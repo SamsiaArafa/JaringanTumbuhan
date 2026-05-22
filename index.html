@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>Jaringan Tumbuhan | IPA Kelas 8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   ROOT VARIABLES
+   ============================================================ */
+:root {
+  --g1:#0a2e1a; --g2:#1b4332; --g3:#2d6a4f; --g4:#40916c;
+  --g5:#74c69d; --g6:#b7e4c7; --g7:#d8f3dc;
+  --gold:#f4b942; --gold2:#ffd166;
+  --brown:#7f5539; --cream:#fffdf5;
+  --red:#e63946; --blue:#4361ee;
+  --white:#fff; --text:#1b2d1e;
+  --r:20px; --shadow:0 12px 40px rgba(10,46,26,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;font-family:'Nunito',sans-serif;background:var(--g1);}
+
+/* ============================================================
+   APP SHELL
+   ============================================================ */
+#app{
+  display:flex; flex-direction:column; height:100vh; height:100dvh;
+  position:relative; overflow:hidden;
+}
+
+/* ============================================================
+   TOP NAV BAR
+   ============================================================ */
+#topbar{
+  flex-shrink:0;
+  background:rgba(10,46,26,.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(116,198,157,.2);
+  padding:0 16px;
+  height:52px;
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  z-index:100;
+}
+#topbar-title{
+  font-family:'Playfair Display',serif;
+  font-size:.9rem; font-weight:700;
+  color:var(--gold2);
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  flex:1;
+}
+#slide-counter{
+  font-family:'Space Mono',monospace;
+  font-size:.78rem; color:rgba(255,255,255,.55);
+  white-space:nowrap;
+}
+#menu-btn{
+  background:rgba(255,255,255,.1); border:none; border-radius:10px;
+  width:36px; height:36px; color:var(--white); font-size:1.1rem;
+  cursor:pointer; display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; transition:background .2s;
+}
+#menu-btn:hover{background:rgba(255,255,255,.2);}
+
+/* ============================================================
+   SLIDE STRIP (horizontal scroll container)
+   ============================================================ */
+#slides-track{
+  flex:1; overflow:hidden; position:relative;
+}
+#slides-inner{
+  display:flex; height:100%;
+  transition:transform .45s cubic-bezier(.4,0,.2,1);
+  will-change:transform;
+}
+
+/* ============================================================
+   INDIVIDUAL SLIDE
+   ============================================================ */
+.slide{
+  flex:0 0 100%; width:100%; height:100%;
+  overflow-y:auto; overflow-x:hidden;
+  scroll-snap-type:y mandatory;
+  -webkit-overflow-scrolling:touch;
+}
+.slide-inner{
+  min-height:100%;
+  padding:24px 20px 100px;
+  max-width:780px; margin:0 auto;
+  display:flex; flex-direction:column; justify-content:flex-start; gap:20px;
+}
+
+/* ============================================================
+   SLIDE HEADER BADGE
+   ============================================================ */
+.slide-badge{
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(116,198,157,.15);
+  border:1px solid rgba(116,198,157,.35);
+  color:var(--g5); font-size:.72rem; font-weight:800;
+  letter-spacing:2px; text-transform:uppercase;
+  padding:5px 14px; border-radius:50px;
+  width:fit-content;
+}
+.slide-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,5vw,2.8rem); font-weight:900;
+  color:var(--white); line-height:1.15;
+}
+.slide-title em{font-style:italic; color:var(--gold2);}
+.slide-subtitle{
+  font-size:.95rem; color:rgba(255,255,255,.68);
+  line-height:1.7; max-width:600px;
+}
+
+/* ============================================================
+   ILLUSTRATION CONTAINERS
+   ============================================================ */
+.illus-wrap{
+  border-radius:var(--r);
+  overflow:hidden;
+  width:100%;
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(0,0,0,.2);
+  flex-shrink:0;
+}
+.illus-wrap svg{width:100%; height:auto; display:block;}
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+.card-row{display:flex; gap:14px; flex-wrap:wrap;}
+.card-row .card{flex:1; min-width:200px;}
+
+.card{
+  background:rgba(255,255,255,.07);
+  border:1.5px solid rgba(255,255,255,.12);
+  border-radius:var(--r);
+  padding:20px 18px;
+  transition:transform .2s, background .2s;
+}
+.card:hover{transform:translateY(-4px); background:rgba(255,255,255,.11);}
+.card-icon{font-size:2rem; margin-bottom:10px;}
+.card-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem; color:var(--g5); margin-bottom:6px;
+}
+.card-text{font-size:.88rem; line-height:1.65; color:rgba(255,255,255,.78);}
+.card.gold{border-color:rgba(244,185,66,.25);}
+.card.gold .card-title{color:var(--gold2);}
+.card.red{border-color:rgba(230,57,70,.3);}
+.card.brown{border-color:rgba(127,85,57,.35);}
+
+/* Accent top bar */
+.card[data-accent]::before{
+  content:''; display:block;
+  height:4px; border-radius:var(--r) var(--r) 0 0;
+  margin:-20px -18px 14px; background:var(--accent-color,var(--g4));
+}
+
+/* ============================================================
+   COMPARISON SPLIT
+   ============================================================ */
+.split{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+@media(max-width:500px){.split{grid-template-columns:1fr;}}
+
+.split-a,.split-b{
+  border-radius:var(--r); padding:20px 18px;
+}
+.split-a{background:linear-gradient(145deg,rgba(45,106,79,.5),rgba(27,67,50,.6)); border:2px solid rgba(116,198,157,.3);}
+.split-b{background:linear-gradient(145deg,rgba(127,85,57,.4),rgba(50,30,10,.5)); border:2px solid rgba(244,185,66,.3);}
+.split-a h4,.split-b h4{
+  font-family:'Playfair Display',serif;
+  font-size:1rem; margin-bottom:10px;
+}
+.split-a h4{color:var(--g5);}
+.split-b h4{color:var(--gold2);}
+.split-a ul,.split-b ul{list-style:none; display:flex; flex-direction:column; gap:8px;}
+.split-a li,.split-b li{font-size:.85rem; line-height:1.5; color:rgba(255,255,255,.82); padding-left:16px; position:relative;}
+.split-a li::before{content:'✦'; position:absolute; left:0; font-size:.6rem; color:var(--g5); top:3px;}
+.split-b li::before{content:'✦'; position:absolute; left:0; font-size:.6rem; color:var(--gold2); top:3px;}
+
+/* ============================================================
+   TABLE
+   ============================================================ */
+.tbl-wrap{border-radius:var(--r); overflow:hidden; overflow-x:auto;}
+table{width:100%; border-collapse:collapse; font-size:.84rem; min-width:400px;}
+thead{background:rgba(27,67,50,.9);}
+thead th{padding:12px 14px; color:var(--g5); font-family:'Playfair Display',serif; font-size:.9rem; text-align:center;}
+tbody tr{border-bottom:1px solid rgba(255,255,255,.06);}
+tbody tr:nth-child(odd){background:rgba(255,255,255,.04);}
+tbody tr:nth-child(even){background:rgba(0,0,0,.12);}
+tbody td{padding:10px 14px; text-align:center; color:rgba(255,255,255,.80); font-size:.83rem;}
+tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
+
+/* ============================================================
+   HIGHLIGHT BOX
+   ============================================================ */
+.highlight{
+  background:linear-gradient(135deg,rgba(244,185,66,.12),rgba(116,198,157,.08));
+  border:1.5px solid rgba(244,185,66,.3);
+  border-radius:var(--r); padding:18px 20px;
+}
+.highlight-icon{font-size:2rem; margin-bottom:8px;}
+.highlight-text{font-size:.9rem; line-height:1.7; color:rgba(255,255,255,.85);}
+.highlight-text strong{color:var(--gold2);}
+
+/* ============================================================
+   ZONE STEPS
+   ============================================================ */
+.zones{display:flex; flex-direction:column; gap:0;}
+.zone{
+  display:flex; align-items:flex-start; gap:16px;
+  padding:16px 0; border-bottom:1px solid rgba(255,255,255,.07);
+}
+.zone:last-child{border-bottom:none;}
+.zone-num{
+  width:38px; height:38px; border-radius:50%; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Space Mono',monospace; font-size:.85rem; font-weight:700;
+}
+.zone-num.gn{background:rgba(64,145,108,.4); color:var(--g5); border:2px solid var(--g4);}
+.zone-num.gd{background:rgba(244,185,66,.2); color:var(--gold2); border:2px solid var(--gold);}
+.zone-num.br{background:rgba(127,85,57,.3); color:#d4a373; border:2px solid var(--brown);}
+.zone-text h4{font-size:.95rem; color:var(--white); margin-bottom:4px; font-weight:800;}
+.zone-text p{font-size:.84rem; color:rgba(255,255,255,.70); line-height:1.55;}
+
+/* ============================================================
+   COMPONENT LIST
+   ============================================================ */
+.comp-list{display:flex; flex-direction:column; gap:10px;}
+.comp-item{
+  background:rgba(255,255,255,.05);
+  border-left:4px solid var(--g4);
+  border-radius:0 12px 12px 0;
+  padding:14px 16px;
+  transition:background .2s;
+}
+.comp-item:hover{background:rgba(255,255,255,.09);}
+.comp-item.gold{border-left-color:var(--gold);}
+.comp-item h4{font-size:.9rem; color:var(--white); margin-bottom:4px; font-weight:800;}
+.comp-item p{font-size:.83rem; color:rgba(255,255,255,.68); line-height:1.5;}
+
+/* ============================================================
+   RINGKASAN POINTS
+   ============================================================ */
+.ring-list{display:flex; flex-direction:column; gap:10px;}
+.ring-item{
+  background:rgba(255,255,255,.05);
+  border-radius:14px; padding:14px 16px;
+  display:flex; align-items:flex-start; gap:12px;
+  border:1px solid rgba(255,255,255,.08);
+}
+.ring-num{
+  font-family:'Space Mono',monospace; font-size:1rem;
+  font-weight:700; color:var(--gold2); flex-shrink:0; width:26px;
+}
+.ring-text{font-size:.87rem; line-height:1.6; color:rgba(255,255,255,.80);}
+.ring-text strong{color:var(--g5);}
+
+/* ============================================================
+   TAGS
+   ============================================================ */
+.tag-row{display:flex; flex-wrap:wrap; gap:8px;}
+.tag{
+  background:rgba(116,198,157,.15); border:1px solid rgba(116,198,157,.3);
+  color:var(--g5); font-size:.78rem; font-weight:700;
+  padding:4px 12px; border-radius:50px;
+}
+.tag.gold{background:rgba(244,185,66,.15); border-color:rgba(244,185,66,.3); color:var(--gold2);}
+
+/* ============================================================
+   BOTTOM NAV
+   ============================================================ */
+#bottom-nav{
+  flex-shrink:0;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:10px 16px;
+  background:rgba(10,46,26,.92); backdrop-filter:blur(12px);
+  border-top:1px solid rgba(116,198,157,.15);
+  z-index:100; gap:10px;
+}
+.nav-btn{
+  background:rgba(255,255,255,.1); border:none; border-radius:14px;
+  color:var(--white); font-family:'Nunito',sans-serif;
+  font-weight:800; font-size:.88rem;
+  padding:10px 20px; cursor:pointer;
+  display:flex; align-items:center; gap:6px;
+  transition:background .2s, transform .15s;
+  min-width:90px; justify-content:center;
+}
+.nav-btn:hover:not(:disabled){background:rgba(116,198,157,.25); transform:scale(1.03);}
+.nav-btn:disabled{opacity:.3; cursor:default;}
+.nav-btn.primary{background:var(--g3); color:var(--white);}
+.nav-btn.primary:hover:not(:disabled){background:var(--g4);}
+
+/* Dot indicators */
+#dots{
+  display:flex; gap:6px; align-items:center; flex-wrap:wrap; justify-content:center;
+  flex:1;
+}
+.dot{
+  width:8px; height:8px; border-radius:50%;
+  background:rgba(255,255,255,.22); transition:all .3s; cursor:pointer;
+}
+.dot.active{background:var(--g5); width:22px; border-radius:4px;}
+.dot.visited{background:rgba(116,198,157,.45);}
+
+/* ============================================================
+   SIDE MENU OVERLAY
+   ============================================================ */
+#menu-overlay{
+  position:fixed; inset:0; z-index:200;
+  background:rgba(0,0,0,.6); backdrop-filter:blur(4px);
+  opacity:0; pointer-events:none; transition:opacity .3s;
+}
+#menu-overlay.open{opacity:1; pointer-events:all;}
+
+#side-menu{
+  position:fixed; top:0; right:-320px; bottom:0; width:300px;
+  background:var(--g2); z-index:201;
+  padding:20px 16px;
+  transition:right .35s cubic-bezier(.4,0,.2,1);
+  overflow-y:auto;
+  box-shadow:-8px 0 40px rgba(0,0,0,.4);
+  border-left:1px solid rgba(116,198,157,.15);
+}
+#side-menu.open{right:0;}
+#menu-close{
+  background:none; border:none; color:rgba(255,255,255,.5);
+  font-size:1.3rem; cursor:pointer; float:right; margin-bottom:16px;
+}
+#menu-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.1rem; color:var(--gold2); margin-bottom:6px; clear:both;
+}
+#menu-subtitle{font-size:.78rem; color:rgba(255,255,255,.4); margin-bottom:20px;}
+.menu-list{display:flex; flex-direction:column; gap:6px;}
+.menu-item{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:12px; padding:12px 14px;
+  cursor:pointer; transition:background .2s, border-color .2s;
+  display:flex; align-items:center; gap:10px;
+}
+.menu-item:hover,.menu-item.active{background:rgba(116,198,157,.15); border-color:rgba(116,198,157,.3);}
+.menu-item-num{
+  font-family:'Space Mono',monospace; font-size:.75rem;
+  color:rgba(255,255,255,.35); width:24px; flex-shrink:0;
+}
+.menu-item-text{font-size:.88rem; font-weight:700; color:rgba(255,255,255,.80);}
+.menu-item.active .menu-item-text{color:var(--g5);}
+.menu-item-icon{font-size:1.1rem; flex-shrink:0;}
+
+/* ============================================================
+   SPECIAL SLIDE BACKGROUNDS
+   ============================================================ */
+.slide-hero-bg{
+  background: radial-gradient(ellipse at 30% 60%, rgba(45,106,79,.4) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 20%, rgba(244,185,66,.1) 0%, transparent 50%),
+              var(--g1);
+}
+.slide-green-bg{background:linear-gradient(160deg,rgba(27,67,50,.3) 0%,var(--g1) 100%);}
+.slide-gold-bg{background:linear-gradient(160deg,rgba(127,85,57,.2) 0%,var(--g1) 100%);}
+
+/* ============================================================
+   SCROLL INDICATOR
+   ============================================================ */
+.scroll-hint{
+  text-align:center; font-size:.72rem; color:rgba(255,255,255,.3);
+  letter-spacing:1px; padding:4px 0;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:.7}}
+
+/* ============================================================
+   GAME SECTION
+   ============================================================ */
+.game-wrap{
+  background:rgba(0,0,0,.25); border-radius:var(--r);
+  border:1px solid rgba(116,198,157,.2); padding:20px;
+}
+.game-hud{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:16px;
+}
+.hud-box{
+  background:rgba(0,0,0,.3); border-radius:12px; padding:10px 8px; text-align:center;
+}
+.hud-lbl{font-size:.65rem; color:rgba(255,255,255,.45); text-transform:uppercase; letter-spacing:1px; font-weight:700;}
+.hud-val{font-family:'Space Mono',monospace; font-size:1.5rem; color:var(--gold2);}
+.prog-wrap{height:6px; background:rgba(255,255,255,.1); border-radius:50px; margin-bottom:18px; overflow:hidden;}
+.prog-bar{height:100%; background:linear-gradient(90deg,var(--g5),var(--gold2)); border-radius:50px; transition:width .5s;}
+.q-card{
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12);
+  border-radius:16px; padding:20px; text-align:center; margin-bottom:16px;
+}
+.q-text{font-family:'Playfair Display',serif; font-size:clamp(.95rem,2.5vw,1.15rem); line-height:1.5; color:var(--white);}
+.opts-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px;}
+@media(max-width:400px){.opts-grid{grid-template-columns:1fr;}}
+.opt-btn{
+  background:rgba(255,255,255,.08); border:2px solid rgba(255,255,255,.18);
+  border-radius:14px; color:var(--white); font-family:'Nunito',sans-serif;
+  font-size:.88rem; font-weight:700; padding:12px 14px;
+  cursor:pointer; text-align:left; display:flex; align-items:center; gap:8px;
+  transition:all .18s;
+}
+.opt-btn:hover:not(:disabled){background:rgba(255,255,255,.16); border-color:var(--gold2); transform:translateY(-2px);}
+.opt-ltr{
+  background:rgba(255,255,255,.18); border-radius:50%;
+  width:26px; height:26px; display:flex; align-items:center;
+  justify-content:center; font-size:.78rem; font-weight:800; flex-shrink:0;
+}
+.opt-btn.correct{background:rgba(45,106,79,.7)!important; border-color:var(--g5)!important;}
+.opt-btn.wrong{background:rgba(230,57,70,.5)!important; border-color:var(--red)!important;}
+.opt-btn:disabled{cursor:default; transform:none!important;}
+.fb-box{
+  border-radius:12px; padding:12px 16px; font-weight:700; font-size:.88rem;
+  text-align:center; margin-bottom:12px; display:none;
+  animation:popIn .3s both;
+}
+@keyframes popIn{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+.fb-box.correct{background:rgba(45,106,79,.65);}
+.fb-box.wrong{background:rgba(230,57,70,.5);}
+.game-btn{
+  background:var(--gold); color:var(--g1); border:none; border-radius:14px;
+  font-family:'Nunito',sans-serif; font-weight:900; font-size:.95rem;
+  padding:12px 28px; cursor:pointer; display:block; margin:0 auto;
+  transition:transform .15s, box-shadow .15s;
+  box-shadow:0 4px 16px rgba(244,185,66,.3);
+}
+.game-btn:hover{transform:translateY(-2px); box-shadow:0 6px 22px rgba(244,185,66,.45);}
+.result-scr{text-align:center; padding:16px 0; display:none;}
+.result-scr.show{display:block;}
+.res-emoji{font-size:4rem; margin-bottom:10px;}
+.res-h{font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--gold2); margin-bottom:6px;}
+.res-score{font-family:'Space Mono',monospace; font-size:2.8rem; color:var(--white); margin:8px 0 16px;}
+.res-msg{font-size:.9rem; opacity:.80; margin-bottom:18px;}
+/* Match game */
+.mode-tabs{display:flex; gap:8px; justify-content:center; margin-bottom:18px; flex-wrap:wrap;}
+.mode-tab{
+  background:rgba(255,255,255,.1); border:2px solid rgba(255,255,255,.18);
+  color:rgba(255,255,255,.75); font-family:'Nunito',sans-serif;
+  font-weight:800; font-size:.82rem; padding:8px 18px; border-radius:50px;
+  cursor:pointer; transition:all .2s;
+}
+.mode-tab.active,.mode-tab:hover{background:var(--gold); border-color:var(--gold); color:var(--g1);}
+.match-area{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:12px 0;}
+.match-col h4{font-size:.82rem; color:var(--g5); text-align:center; margin-bottom:6px; font-weight:800;}
+.match-col{display:flex; flex-direction:column; gap:8px;}
+.match-item{
+  background:rgba(255,255,255,.08); border:2px solid rgba(255,255,255,.18);
+  border-radius:10px; padding:10px 12px; font-size:.78rem; font-weight:700;
+  cursor:pointer; transition:all .18s; text-align:center; color:rgba(255,255,255,.85);
+}
+.match-item:hover{background:rgba(255,255,255,.16); border-color:var(--gold2);}
+.match-item.selected{background:rgba(244,185,66,.25); border-color:var(--gold); color:var(--gold2);}
+.match-item.matched-ok{background:rgba(45,106,79,.6); border-color:var(--g5); cursor:default; color:var(--g6);}
+.match-item.matched-err{background:rgba(230,57,70,.45); border-color:var(--red);}
+.match-status{text-align:center; font-size:.85rem; font-weight:700; min-height:1.4em; margin-top:6px;}
+
+/* ============================================================
+   HERO SLIDE CHIPS
+   ============================================================ */
+.chip-row{display:flex; flex-wrap:wrap; gap:8px;}
+.chip{
+  background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18);
+  color:rgba(255,255,255,.85); font-size:.78rem; font-weight:700;
+  padding:5px 12px; border-radius:50px;
+}
+
+/* ============================================================
+   RESPONSIVE TWEAKS
+   ============================================================ */
+@media(max-width:480px){
+  .slide-inner{padding:18px 14px 100px;}
+  .split{gap:10px;}
+  .card{min-width:0;}
+  .card-row{flex-direction:column;}
+  .match-item{font-size:.72rem; padding:8px;}
+  .illus-wrap{max-height:220px;}
+}
+@media(min-width:900px){
+  .slide-inner{padding:32px 40px 100px;}
+  .card-row .card{min-width:220px;}
+  .illus-wrap{max-height:380px;}
+}
+
+/* SWIPE FEEDBACK */
+.slide-transition-in{animation:slideIn .4s cubic-bezier(.4,0,.2,1) both;}
+@keyframes slideIn{from{opacity:.5; transform:translateX(20px)}to{opacity:1; transform:none}}
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- TOP BAR -->
+  <div id="topbar">
+    <div id="topbar-title">🌿 Jaringan Tumbuhan</div>
+    <div id="slide-counter">1 / 12</div>
+    <button id="menu-btn" onclick="toggleMenu()">☰</button>
+  </div>
+
+  <!-- SLIDES TRACK -->
+  <div id="slides-track">
+    <div id="slides-inner">
+
+      <!-- ============================================================
+           SLIDE 0 — HERO
+           ============================================================ -->
+      <div class="slide slide-hero-bg" data-title="Pendahuluan">
+        <div class="slide-inner">
+          <span class="slide-badge">🌿 IPA Kelas 8 SMP/MTs</span>
+          <div class="slide-title">Struktur<br/><em>Jaringan</em><br/>Tumbuhan</div>
+          <div class="slide-subtitle">Jelajahi dunia mikroskopis tumbuhan — dari sel yang aktif membelah hingga pembuluh pengangkut yang luar biasa.</div>
+
+          <!-- HERO ILLUSTRATION — botanical cross section -->
+          <div class="illus-wrap" style="height:200px; background:transparent;">
+            <svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg" style="height:200px;">
+              <!-- Background glow -->
+              <defs>
+                <radialGradient id="glow1" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#2d6a4f" stop-opacity="0.4"/>
+                  <stop offset="100%" stop-color="#0a2e1a" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+              <ellipse cx="250" cy="100" rx="220" ry="90" fill="url(#glow1)"/>
+              <!-- Stem cross-section -->
+              <circle cx="250" cy="100" r="72" fill="#1b4332" stroke="#40916c" stroke-width="2"/>
+              <!-- Epidermis ring -->
+              <circle cx="250" cy="100" r="70" fill="none" stroke="#74c69d" stroke-width="4"/>
+              <!-- Cortex -->
+              <circle cx="250" cy="100" r="60" fill="none" stroke="#2d6a4f" stroke-width="2" stroke-dasharray="4,3"/>
+              <!-- Vascular bundles — arranged in ring (dikotil) -->
+              <g>
+                <ellipse cx="250" cy="46" rx="9" ry="6" fill="#4361ee" opacity=".85"/>
+                <ellipse cx="250" cy="46" rx="5" ry="3" fill="#74c69d" opacity=".9"/>
+                <ellipse cx="297" cy="64" rx="9" ry="6" fill="#4361ee" opacity=".85" transform="rotate(36,297,64)"/>
+                <ellipse cx="297" cy="64" rx="5" ry="3" fill="#74c69d" opacity=".9" transform="rotate(36,297,64)"/>
+                <ellipse cx="315" cy="106" rx="9" ry="6" fill="#4361ee" opacity=".85" transform="rotate(72,315,106)"/>
+                <ellipse cx="315" cy="106" rx="5" ry="3" fill="#74c69d" opacity=".9" transform="rotate(72,315,106)"/>
+                <ellipse cx="290" cy="148" rx="9" ry="6" fill="#4361ee" opacity=".85" transform="rotate(108,290,148)"/>
+                <ellipse cx="290" cy="148" rx="5" ry="3" fill="#74c69d" opacity=".9" transform="rotate(108,290,148)"/>
+                <ellipse cx="250" cy="158" rx="9" ry="6" fill="#4361ee" opacity=".85"/>
+                <ellipse cx="250" cy="158" rx="5" ry="3" fill="#74c69d" opacity=".9"/>
+                <ellipse cx="210" cy="148" rx="9" ry="6" fill="#4361ee" opacity=".85" transform="rotate(-108,210,148)"/>
+                <ellipse cx="210" cy="148" rx="5" ry="3" fill="#74c69d" opacity=".9" transform="rotate(-108,210,148)"/>
+                <ellipse cx="186" cy="106" rx="9" ry="6" fill="#4361ee" opacity=".85" transform="rotate(-72,186,106)"/>
+                <ellipse cx="186" cy="106" rx="5" ry="3" fill="#74c69d" opacity=".9" transform="rotate(-72,186,106)"/>
+                <ellipse cx="205" cy="64" rx="9" ry="6" fill="#4361ee" opacity=".85" transform="rotate(-36,205,64)"/>
+                <ellipse cx="205" cy="64" rx="5" ry="3" fill="#74c69d" opacity=".9" transform="rotate(-36,205,64)"/>
+              </g>
+              <!-- Labels -->
+              <text x="370" y="50" fill="#74c69d" font-size="11" font-family="Nunito,sans-serif" font-weight="700">Xilem</text>
+              <text x="370" y="66" fill="#f4b942" font-size="10" font-family="Nunito,sans-serif">(biru tua)</text>
+              <text x="370" y="94" fill="#74c69d" font-size="11" font-family="Nunito,sans-serif" font-weight="700">Floem</text>
+              <text x="370" y="110" fill="#f4b942" font-size="10" font-family="Nunito,sans-serif">(hijau)</text>
+              <text x="370" y="138" fill="#74c69d" font-size="11" font-family="Nunito,sans-serif" font-weight="700">Epidermis</text>
+              <text x="250" y="104" fill="rgba(255,255,255,0.25)" font-size="9" font-family="Nunito,sans-serif" text-anchor="middle">Korteks</text>
+              <!-- Lines -->
+              <line x1="360" y1="48" x2="297" y2="67" stroke="#74c69d" stroke-width="1" stroke-dasharray="3,2" opacity=".5"/>
+              <line x1="360" y1="92" x2="258" y2="51" stroke="#74c69d" stroke-width="1" stroke-dasharray="3,2" opacity=".5"/>
+              <line x1="360" y1="136" x2="320" y2="102" stroke="#74c69d" stroke-width="1" stroke-dasharray="3,2" opacity=".5"/>
+              <!-- Decorative leaves -->
+              <ellipse cx="50" cy="60" rx="30" ry="50" fill="#2d6a4f" opacity=".4" transform="rotate(-40,50,60)"/>
+              <line x1="50" y1="20" x2="50" y2="100" stroke="#40916c" stroke-width="1.5" opacity=".5" transform="rotate(-40,50,60)"/>
+              <ellipse cx="440" cy="150" rx="25" ry="42" fill="#2d6a4f" opacity=".3" transform="rotate(30,440,150)"/>
+            </svg>
+          </div>
+
+          <div class="chip-row">
+            <span class="chip">🌱 Meristem</span>
+            <span class="chip">💧 Xilem</span>
+            <span class="chip">🍬 Floem</span>
+            <span class="chip">🌳 Dikotil</span>
+            <span class="chip">🌾 Monokotil</span>
+            <span class="chip">🎮 Game</span>
+          </div>
+
+          <div style="background:rgba(116,198,157,.1);border:1px solid rgba(116,198,157,.25);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:10px;">
+            <span style="font-size:1.4rem;">💡</span>
+            <span style="font-size:.85rem;color:rgba(255,255,255,.75);line-height:1.5;">Gunakan tombol <strong style="color:var(--gold2)">Lanjut →</strong> di bawah atau geser layar ke kiri/kanan untuk berpindah materi. Ketuk <strong style="color:var(--gold2)">☰</strong> untuk daftar isi.</span>
+          </div>
+          <div class="scroll-hint">↓ Geser ke bawah jika konten panjang</div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           SLIDE 1 — APA ITU JARINGAN
+           ============================================================ -->
+      <div class="slide slide-green-bg" data-title="Jaringan Tumbuhan">
+        <div class="slide-inner">
+          <span class="slide-badge">✦ Pendahuluan</span>
+          <div class="slide-title">Apa itu <em>Jaringan</em> Tumbuhan?</div>
+
+          <!-- Illustration: cell cluster -->
+          <div class="illus-wrap" style="height:160px; background:rgba(0,0,0,.2); border-radius:18px;">
+            <svg viewBox="0 0 500 160" xmlns="http://www.w3.org/2000/svg">
+              <!-- Cell grid pattern -->
+              <defs>
+                <pattern id="cells" x="0" y="0" width="50" height="44" patternUnits="userSpaceOnUse">
+                  <rect x="2" y="2" width="44" height="38" rx="6" fill="rgba(45,106,79,0.35)" stroke="#40916c" stroke-width="1.5"/>
+                  <circle cx="25" cy="21" r="8" fill="rgba(116,198,157,0.3)" stroke="#74c69d" stroke-width="1"/>
+                  <circle cx="25" cy="21" r="3" fill="#74c69d" opacity=".7"/>
+                </pattern>
+                <pattern id="cells2" x="0" y="0" width="50" height="44" patternUnits="userSpaceOnUse">
+                  <rect x="2" y="2" width="44" height="38" rx="6" fill="rgba(127,85,57,0.25)" stroke="#b08968" stroke-width="1.5"/>
+                  <circle cx="25" cy="21" r="6" fill="rgba(212,160,23,0.2)" stroke="#f4b942" stroke-width="1"/>
+                  <circle cx="25" cy="21" r="2.5" fill="#f4b942" opacity=".6"/>
+                </pattern>
+              </defs>
+              <!-- Left half: meristem cells (small, active) -->
+              <clipPath id="leftHalf"><rect x="0" y="0" width="240" height="160"/></clipPath>
+              <rect x="0" y="0" width="240" height="160" fill="url(#cells)" clip-path="url(#leftHalf)" opacity=".9"/>
+              <!-- Right half: mature cells (larger) -->
+              <clipPath id="rightHalf"><rect x="260" y="0" width="240" height="160"/></clipPath>
+              <rect x="260" y="0" width="240" height="160" fill="url(#cells2)" clip-path="url(#rightHalf)" opacity=".9"/>
+              <!-- Divider -->
+              <line x1="250" y1="0" x2="250" y2="160" stroke="rgba(255,255,255,.3)" stroke-width="2" stroke-dasharray="6,4"/>
+              <!-- Labels -->
+              <rect x="10" y="8" width="120" height="24" rx="12" fill="rgba(45,106,79,.7)"/>
+              <text x="70" y="24" fill="#74c69d" font-size="11" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">🌱 Meristem</text>
+              <rect x="370" y="8" width="120" height="24" rx="12" fill="rgba(127,85,57,.6)"/>
+              <text x="430" y="24" fill="#f4b942" font-size="11" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">🍂 Dewasa</text>
+              <!-- Arrow in middle -->
+              <text x="250" y="90" fill="rgba(255,255,255,.5)" font-size="24" text-anchor="middle">→</text>
+              <text x="250" y="108" fill="rgba(255,255,255,.3)" font-size="9" font-family="Nunito,sans-serif" text-anchor="middle">diferensiasi</text>
+            </svg>
+          </div>
+
+          <div class="slide-subtitle">Jaringan tumbuhan = kumpulan sel yang memiliki <strong style="color:var(--g5)">bentuk, fungsi, dan asal yang sama</strong>, bekerja bersama membentuk organ.</div>
+
+          <div class="card-row">
+            <div class="card">
+              <div class="card-icon">🌱</div>
+              <div class="card-title">Jaringan Meristem</div>
+              <div class="card-text">Sel-selnya <strong style="color:var(--g5)">aktif membelah</strong> (mitosis) dan belum berdiferensiasi. Bertanggung jawab atas pertumbuhan tumbuhan.</div>
+              <div class="tag-row" style="margin-top:10px;">
+                <span class="tag">Ujung Akar</span>
+                <span class="tag">Ujung Batang</span>
+                <span class="tag">Kambium</span>
+              </div>
+            </div>
+            <div class="card gold">
+              <div class="card-icon">🍂</div>
+              <div class="card-title" style="color:var(--gold2)">Jaringan Dewasa</div>
+              <div class="card-text">Sel-selnya telah <strong style="color:var(--gold2)">berdiferensiasi</strong> dan memiliki fungsi khusus. Umumnya tidak aktif membelah lagi.</div>
+              <div class="tag-row" style="margin-top:10px;">
+                <span class="tag gold">Epidermis</span>
+                <span class="tag gold">Xilem/Floem</span>
+                <span class="tag gold">Kolenkim</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           SLIDE 2 — MERISTEM APIKAL
+           ============================================================ -->
+      <div class="slide slide-green-bg" data-title="Meristem Apikal">
+        <div class="slide-inner">
+          <span class="slide-badge">✦ Bab 1</span>
+          <div class="slide-title"><em>Meristem</em> Apikal</div>
+
+          <!-- Illustration: root tip zones -->
+          <div class="illus-wrap" style="height:200px; background:rgba(0,0,0,.25); border-radius:18px;">
+            <svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+              <!-- Root body -->
+              <rect x="210" y="0" width="80" height="170" rx="4" fill="rgba(45,106,79,0.3)" stroke="#40916c" stroke-width="1.5"/>
+              <!-- Zone 3: Diferensiasi (top) -->
+              <rect x="210" y="0" width="80" height="55" rx="4" fill="rgba(127,85,57,.35)" stroke="#b08968" stroke-width="1"/>
+              <text x="250" y="32" fill="#d4a373" font-size="10" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">Zona Diferensiasi</text>
+              <!-- Zone 2: Pemanjangan -->
+              <rect x="210" y="57" width="80" height="45" rx="0" fill="rgba(244,185,66,.2)" stroke="#f4b942" stroke-width="1"/>
+              <text x="250" y="84" fill="#f4b942" font-size="10" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">Zona Pemanjangan</text>
+              <!-- Zone 1: Pembelahan -->
+              <rect x="210" y="104" width="80" height="38" rx="0" fill="rgba(67,97,238,.3)" stroke="#4361ee" stroke-width="1"/>
+              <text x="250" y="127" fill="#a8c8ff" font-size="10" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">Zona Pembelahan</text>
+              <!-- Kaliptra / root cap -->
+              <ellipse cx="250" cy="155" rx="42" ry="18" fill="rgba(116,198,157,.3)" stroke="#74c69d" stroke-width="2"/>
+              <text x="250" y="159" fill="#74c69d" font-size="10" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">Kaliptra</text>
+              <!-- Stem top: primordia -->
+              <ellipse cx="250" cy="0" rx="45" ry="12" fill="rgba(116,198,157,.25)" stroke="#74c69d" stroke-width="1.5"/>
+              <text x="250" y="3" fill="#74c69d" font-size="9" font-family="Nunito,sans-serif" font-weight="700" text-anchor="middle">Primordia Daun</text>
+              <!-- Arrow labels -->
+              <text x="340" y="30" fill="#d4a373" font-size="10" font-family="Nunito,sans-serif">③ Berubah jadi</text>
+              <text x="340" y="42" fill="#d4a373" font-size="10" font-family="Nunito,sans-serif">   jaringan khusus</text>
+              <line x1="338" y1="30" x2="296" y2="28" stroke="#d4a373" stroke-width="1" opacity=".6"/>
+              <text x="340" y="80" fill="#f4b942" font-size="10" font-family="Nunito,sans-serif">② Sel memanjang</text>
+              <line x1="338" y1="78" x2="296" y2="80" stroke="#f4b942" stroke-width="1" opacity=".6"/>
+              <text x="340" y="125" fill="#a8c8ff" font-size="10" font-family="Nunito,sans-serif">① Sel membelah</text>
+              <line x1="338" y1="123" x2="296" y2="123" stroke="#a8c8ff" stroke-width="1" opacity=".6"/>
+              <text x="100" y="155" fill="#74c69d" font-size="10" font-family="Nunito,sans-serif">Pelindung</text>
+              <text x="100" y="167" fill="#74c69d" font-size="10" font-family="Nunito,sans-serif">meristem</text>
+              <line x1="155" y1="155" x2="207" y2="155" stroke="#74c69d" stroke-width="1" opacity=".5"/>
+            </svg>
+          </div>
+
+          <div class="split">
+            <div class="split-a">
+              <h4>🌿 Ujung Batang</h4>
+              <ul>
+                <li>Pertumbuhan ke atas (tinggi)</li>
+                <li>Dilindungi <strong>primordia daun</strong></li>
+                <li>→ Pertumbuhan primer batang</li>
+              </ul>
+            </div>
+            <div class="split-b">
+              <h4>🌾 Ujung Akar</h4>
+              <ul>
+                <li>Pertumbuhan ke dalam tanah</li>
+                <li>Dilindungi <strong>Kaliptra</strong></li>
+                <li>→ Menembus tanah</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="zones">
+            <div class="zone">
+              <div class="zone-num gn">①</div>
+              <div class="zone-text"><h4>Zona Pembelahan</h4><p>Sel-sel aktif bermitosis menghasilkan sel-sel baru untuk menambah panjang organ.</p></div>
+            </div>
+            <div class="zone">
+              <div class="zone-num gd">②</div>
+              <div class="zone-text"><h4>Zona Pemanjangan</h4><p>Sel membesar dan memanjang secara dramatis, mendorong ujung organ ke depan.</p></div>
+            </div>
+            <div class="zone">
+              <div class="zone-num br">③</div>
+              <div class="zone-text"><h4>Zona Diferensiasi</h4><p>Sel berubah menjadi jaringan khusus: epidermis, korteks, jaringan pengangkut.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           SLIDE 3 — JENIS MERISTEM
+           ============================================================ -->
+      <div class="slide slide-green-bg" data-title="Jenis-Jenis Meristem">
+        <div class="slide-inner">
+          <span class="slide-badge">✦ Bab 1 Lanjutan</span>
+          <div class="slide-title">Jenis-Jenis <em>Meristem</em></div>
+
+          <!-- Illustration: plant with labeled zones -->
+          <div class="illus-wrap" style="height:180px; background:rgba(0,0,0,.2); border-radius:18px;">
+            <svg viewBox="0 0 500 180" xmlns="http://www.w3.org/2000/svg">
+              <!-- Stem vertical -->
+              <rect x="237" y="10" width="26" height="140" rx="4" fill="rgba(45,106,79,.35)" stroke="#40916c" stroke-width="1.5"/>
+              <!-- Apical at top -->
+              <ellipse cx="250" cy="12" rx="20" ry="10" fill="rgba(116,198,157,.5)" stroke="#74c69d" stroke-width="2"/>
+              <text x="250" y="16" fill="#0a2e1a" font-size="9" font-family="Nunito,sans-serif" font-weight="900" text-anchor="middle">APIKAL</text>
+              <!-- Internodes (interkalar) -->
+              <rect x="232" y="50" width="36" height="14" rx="3" fill="rgba(244,185,66,.45)" stroke="#f4b942" stroke-width="1.5"/>
+              <text x="250" y="61" fill="#f4b942" font-size="8" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">INTERKALAR</text>
+              <rect x="232" y="90" width="36" height="14" rx="3" fill="rgba(244,185,66,.45)" stroke="#f4b942" stroke-width="1.5"/>
+              <!-- Lateral / kambium ring -->
+              <ellipse cx="250" cy="120" rx="30" ry="6" fill="none" stroke="#e63946" stroke-width="2" stroke-dasharray="4,3"/>
+              <text x="250" y="124" fill="#ff8fab" font-size="8" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">LATERAL</text>
+              <!-- Root -->
+              <rect x="237" y="150" width="26" height="25" rx="4" fill="rgba(45,106,79,.3)" stroke="#40916c" stroke-width="1"/>
+              <ellipse cx="250" cy="174" rx="20" ry="8" fill="rgba(116,198,157,.4)" stroke="#74c69d" stroke-width="1.5"/>
+              <text x="250" y="178" fill="#0a2e1a" font-size="8" font-family="Nunito,sans-serif" font-weight="900" text-anchor="middle">APIKAL</text>
+              <!-- Leaves -->
+              <ellipse cx="210" cy="40" rx="28" ry="12" fill="#2d6a4f" opacity=".5" transform="rotate(-30,210,40)"/>
+              <ellipse cx="290" cy="70" rx="28" ry="12" fill="#2d6a4f" opacity=".5" transform="rotate(30,290,70)"/>
+              <ellipse cx="205" cy="80" rx="24" ry="10" fill="#2d6a4f" opacity=".4" transform="rotate(-25,205,80)"/>
+              <!-- Labels right side -->
+              <text x="320" y="18" fill="#74c69d" font-size="11" font-family="Nunito,sans-serif" font-weight="800">Meristem Apikal</text>
+              <text x="320" y="30" fill="rgba(255,255,255,.4)" font-size="9" font-family="Nunito,sans-serif">Pertumbuhan primer ↕</text>
+              <text x="320" y="62" fill="#f4b942" font-size="11" font-family="Nunito,sans-serif" font-weight="800">Meristem Interkalar</text>
+              <text x="320" y="74" fill="rgba(255,255,255,.4)" font-size="9" font-family="Nunito,sans-serif">Memanjangkan ruas</text>
+              <text x="320" y="120" fill="#ff8fab" font-size="11" font-family="Nunito,sans-serif" font-weight="800">Meristem Lateral</text>
+              <text x="320" y="132" fill="rgba(255,255,255,.4)" font-size="9" font-family="Nunito,sans-serif">Kambium → membesar</text>
+            </svg>
+          </div>
+
+          <div class="tbl-wrap">
+            <table>
+              <thead>
+                <tr><th>Jenis</th><th>Lokasi</th><th>Fungsi</th><th>Tipe</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Meristem Apikal</td><td>Ujung batang & akar</td><td>Pertumbuhan memanjang</td><td>Primer</td></tr>
+                <tr><td>Meristem Lateral (Kambium)</td><td>Antara xilem & floem</td><td>Pertumbuhan melebar</td><td>Sekunder</td></tr>
+                <tr><td>Meristem Interkalar</td><td>Ruas-ruas batang</td><td>Memanjangkan ruas</td><td>Primer</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="highlight">
+            <div class="highlight-icon">⚡</div>
+            <div class="highlight-text"><strong>Ingat!</strong> Meristem Lateral (Kambium) hanya dimiliki oleh tumbuhan <strong>Dikotil</strong>. Tumbuhan Monokotil <strong>tidak memiliki kambium</strong>, sehingga batangnya tidak bisa membesar.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           SLIDE 4 — XILEM
+           ============================================================ -->
+      <div class="slide" style="background:linear-gradient(160deg,rgba(67,97,238,.08) 0%,var(--g1) 100%);" data-title="Xilem">
+        <div class="slide-inner">
+          <span class="slide-badge">✦ Bab 2</span>
+          <div class="slide-title"><em>Xilem</em> — Pembuluh Kayu</div>
+
+          <!-- Xilem illustration -->
+          <div class="illus-wrap" style="height:170px; background:rgba(0,0,0,.25); border-radius:18px;">
+            <svg viewBox="0 0 500 170" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="xgrd" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#1b4332"/>
+                  <stop offset="100%" stop-color="#0a2e1a"/>
+                </linearGradient>
+              </defs>
+              <!-- Vessel/tracheid tubes -->
+              <!-- Trakea (wide) -->
+              <rect x="100" y="20" width="40" height="130" rx="5" fill="rgba(67,97,238,.2)" stroke="#4361ee" stroke-width="2"/>
+              <rect x="108" y="20" width="24" height="130" rx="3" fill="rgba(67,97,238,.15)"/>
+              <!-- open ends -->
+              <rect x="100" y="18" width="40" height="6" rx="2" fill="#4361ee" opacity=".5"/>
+              <rect x="100" y="146" width="40" height="6" rx="2" fill="#4361ee" opacity=".5"/>
+              <!-- water droplets flowing in trakea -->
+              <circle cx="120" cy="50" r="5" fill="#74c69d" opacity=".7"/>
+              <circle cx="120" cy="75" r="5" fill="#74c69d" opacity=".65"/>
+              <circle cx="120" cy="100" r="5" fill="#74c69d" opacity=".6"/>
+              <circle cx="120" cy="125" r="5" fill="#74c69d" opacity=".55"/>
+              <!-- arrows -->
+              <text x="120" y="40" fill="#74c69d" font-size="12" text-anchor="middle" opacity=".7">↑</text>
+              <!-- Trakeid (narrow) -->
+              <rect x="165" y="30" width="28" height="110" rx="8" fill="rgba(67,97,238,.15)" stroke="#4361ee" stroke-width="1.5" stroke-dasharray="3,2"/>
+              <!-- pits -->
+              <circle cx="179" cy="55" r="4" fill="none" stroke="#4361ee" stroke-width="1.5" opacity=".7"/>
+              <circle cx="179" cy="80" r="4" fill="none" stroke="#4361ee" stroke-width="1.5" opacity=".7"/>
+              <circle cx="179" cy="105" r="4" fill="none" stroke="#4361ee" stroke-width="1.5" opacity=".7"/>
+              <!-- Parenkim Xilem -->
+              <rect x="210" y="35" width="30" height="30" rx="6" fill="rgba(116,198,157,.25)" stroke="#74c69d" stroke-width="1.5"/>
+              <rect x="210" y="75" width="30" height="30" rx="6" fill="rgba(116,198,157,.25)" stroke="#74c69d" stroke-width="1.5"/>
+              <rect x="210" y="115" width="30" height="30" rx="6" fill="rgba(116,198,157,.25)" stroke="#74c69d" stroke-width="1.5"/>
+              <!-- Serat Xilem -->
+              <rect x="255" y="25" width="18" height="120" rx="3" fill="rgba(127,85,57,.3)" stroke="#b08968" stroke-width="1.5"/>
+              <!-- Labels -->
+              <text x="120" y="165" fill="#a8c8ff" font-size="9.5" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">① Trakea</text>
+              <text x="179" y="155" fill="#a8c8ff" font-size="9.5" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">② Trakeid</text>
+              <text x="225" y="165" fill="#74c69d" font-size="9.5" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">③ Parenkim</text>
+              <text x="264" y="155" fill="#d4a373" font-size="9.5" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">④ Serat</text>
+              <!-- Flow diagram right side -->
+              <text x="340" y="35" fill="#74c69d" font-size="12" font-family="Nunito,sans-serif" font-weight="900">Aliran Xilem:</text>
+              <text x="340" y="55" fill="rgba(255,255,255,.6)" font-size="11" font-family="Nunito,sans-serif">🌱 Akar</text>
+              <text x="340" y="75" fill="rgba(255,255,255,.5)" font-size="18" font-family="Nunito,sans-serif">↑</text>
+              <text x="340" y="98" fill="rgba(255,255,255,.6)" font-size="11" font-family="Nunito,sans-serif">🪵 Batang</text>
+              <text x="340" y="115" fill="rgba(255,255,255,.5)" font-size="18" font-family="Nunito,sans-serif">↑</text>
+              <text x="340" y="138" fill="rgba(255,255,255,.6)" font-size="11" font-family="Nunito,sans-serif">🍃 Daun</text>
+              <text x="340" y="158" fill="#74c69d" font-size="10" font-family="Nunito,sans-serif" font-weight="700">💧 Air + Mineral</text>
+            </svg>
+          </div>
+
+          <div class="card-row">
+            <div class="card">
+              <div class="card-icon">💧</div>
+              <div class="card-title">Fungsi Xilem</div>
+              <div class="card-text">Mengangkut <strong style="color:var(--g5)">air dan garam mineral</strong> dari akar ke daun. Aliran bersifat <strong style="color:var(--g5)">satu arah ↑</strong></div>
+            </div>
+            <div class="card brown">
+              <div class="card-icon">🪵</div>
+              <div class="card-title" style="color:#d4a373">Karakteristik</div>
+              <div class="card-text">Sebagian besar <strong style="color:#d4a373">sel mati</strong> (trakea & trakeid). Dinding mengandung <strong style="color:#d4a373">lignin</strong> yang keras.</div>
+            </div>
+          </div>
+
+          <div class="comp-list">
+            <div class="comp-item"><h4>① Trakea (Vessel)</h4><p>Sel mati, tabung diameter besar, ujung <strong style="color:var(--g5)">terbuka</strong> — aliran air cepat.</p></div>
+            <div class="comp-item"><h4>② Trakeid</h4><p>Sel mati, lebih sempit, ujung meruncing. Air lewat <strong style="color:var(--g5)">pori-pori (pit)</strong>.</p></div>
+            <div class="comp-item"><h4>③ Parenkim Xilem</h4><p>Sel <strong style="color:var(--g5)">hidup</strong>. Menyimpan cadangan makanan & transpor lateral.</p></div>
+            <div class="comp-item"><h4>④ Serat Xilem</h4><p>Dinding sangat tebal (lignin). Fungsi: <strong style="color:var(--g5)">kekuatan mekanis</strong> penyangga.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           SLIDE 5 — FLOEM
+           ============================================================ -->
+      <div class="slide" style="background:linear-gradient(160deg,rgba(127,85,57,.12) 0%,var(--g1) 100%);" data-title="Floem">
+        <div class="slide-inner">
+          <span class="slide-badge">✦ Bab 3</span>
+          <div class="slide-title"><em>Floem</em> — Pembuluh Tapis</div>
+
+          <!-- Floem illustration -->
+          <div class="illus-wrap" style="height:170px; background:rgba(0,0,0,.25); border-radius:18px;">
+            <svg viewBox="0 0 500 170" xmlns="http://www.w3.org/2000/svg">
+              <!-- Sieve tube -->
+              <rect x="90" y="15" width="38" height="140" rx="5" fill="rgba(244,185,66,.15)" stroke="#f4b942" stroke-width="2"/>
+              <!-- sieve plates (horizontal dashes) -->
+              <line x1="90" y1="45" x2="128" y2="45" stroke="#f4b942" stroke-width="2" stroke-dasharray="3,2"/>
+              <line x1="90" y1="75" x2="128" y2="75" stroke="#f4b942" stroke-width="2" stroke-dasharray="3,2"/>
+              <line x1="90" y1="105" x2="128" y2="105" stroke="#f4b942" stroke-width="2" stroke-dasharray="3,2"/>
+              <line x1="90" y1="130" x2="128" y2="130" stroke="#f4b942" stroke-width="2" stroke-dasharray="3,2"/>
+              <!-- sugar molecules -->
+              <circle cx="109" cy="30" r="4" fill="#f4b942" opacity=".7"/>
+              <circle cx="109" cy="58" r="4" fill="#f4b942" opacity=".65"/>
+              <circle cx="109" cy="90" r="4" fill="#f4b942" opacity=".6"/>
+              <circle cx="109" cy="118" r="4" fill="#f4b942" opacity=".55"/>
+              <circle cx="109" cy="142" r="4" fill="#f4b942" opacity=".5"/>
+              <!-- two-way arrows -->
+              <text x="109" y="160" fill="#f4b942" font-size="10" text-anchor="middle" opacity=".8">↕</text>
+              <!-- Companion cell -->
+              <rect x="133" y="20" width="24" height="55" rx="5" fill="rgba(116,198,157,.25)" stroke="#74c69d" stroke-width="1.5"/>
+              <circle cx="145" cy="40" r="7" fill="rgba(116,198,157,.4)" stroke="#74c69d" stroke-width="1"/>
+              <circle cx="145" cy="40" r="3" fill="#74c69d" opacity=".8"/>
+              <rect x="133" y="80" width="24" height="55" rx="5" fill="rgba(116,198,157,.25)" stroke="#74c69d" stroke-width="1.5"/>
+              <circle cx="145" cy="100" r="7" fill="rgba(116,198,157,.4)" stroke="#74c69d" stroke-width="1"/>
+              <circle cx="145" cy="100" r="3" fill="#74c69d" opacity=".8"/>
+              <!-- Parenkim floem -->
+              <rect x="170" y="30" width="28" height="28" rx="5" fill="rgba(244,185,66,.15)" stroke="#f4b942" stroke-width="1" stroke-dasharray="3,2"/>
+              <rect x="170" y="68" width="28" height="28" rx="5" fill="rgba(244,185,66,.15)" stroke="#f4b942" stroke-width="1" stroke-dasharray="3,2"/>
+              <rect x="170" y="108" width="28" height="28" rx="5" fill="rgba(244,185,66,.15)" stroke="#f4b942" stroke-width="1" stroke-dasharray="3,2"/>
+              <!-- Serat floem -->
+              <rect x="210" y="22" width="16" height="118" rx="4" fill="rgba(127,85,57,.35)" stroke="#b08968" stroke-width="1.5"/>
+              <!-- Labels -->
+              <text x="109" y="12" fill="#f4b942" font-size="9.5" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">① Pem. Tapis</text>
+              <text x="145" y="155" fill="#74c69d" font-size="9.5" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">② Sel Peng.</text>
+              <text x="184" y="155" fill="#f4b942" font-size="9.5" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">③ Parenkim</text>
+              <text x="218" y="155" fill="#d4a373" font-size="9.5" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">④ Serat</text>
+              <!-- Right side -->
+              <text x="300" y="30" fill="#f4b942" font-size="12" font-family="Nunito,sans-serif" font-weight="900">Aliran Floem:</text>
+              <text x="300" y="52" fill="rgba(255,255,255,.6)" font-size="11" font-family="Nunito,sans-serif">🍃 Daun (sumber)</text>
+              <text x="300" y="72" fill="rgba(255,255,255,.5)" font-size="18" font-family="Nunito,sans-serif">↕</text>
+              <text x="300" y="96" fill="rgba(255,255,255,.6)" font-size="11" font-family="Nunito,sans-serif">🌾 Buah / Biji</text>
+              <text x="300" y="116" fill="rgba(255,255,255,.5)" font-size="18" font-family="Nunito,sans-serif">↕</text>
+              <text x="300" y="140" fill="rgba(255,255,255,.6)" font-size="11" font-family="Nunito,sans-serif">🌱 Akar</text>
+              <text x="300" y="160" fill="#f4b942" font-size="10" font-family="Nunito,sans-serif" font-weight="700">🍬 Gula + Nutrisi</text>
+            </svg>
+          </div>
+
+          <div class="card-row">
+            <div class="card gold">
+              <div class="card-icon">🍬</div>
+              <div class="card-title">Fungsi Floem</div>
+              <div class="card-text">Mengedarkan <strong style="color:var(--gold2)">hasil fotosintesis</strong> (gula/sukrosa) dari daun ke seluruh tubuh. Aliran <strong style="color:var(--gold2)">dua arah ↕</strong></div>
+            </div>
+            <div class="card">
+              <div class="card-icon">🫧</div>
+              <div class="card-title">Karakteristik</div>
+              <div class="card-text">Sel-sel <strong style="color:var(--g5)">hidup</strong> yang kehilangan inti saat dewasa. Punya <strong style="color:var(--g5)">lempeng tapis</strong> (lubang-lubang kecil).</div>
+            </div>
+          </div>
+
+          <div class="comp-list">
+            <div class="comp-item gold"><h4>① Pembuluh Tapis (Sieve Tube)</h4><p>Sel hidup, kehilangan inti. Ujung berlubang (lempeng tapis) sebagai jalur nutrisi.</p></div>
+            <div class="comp-item gold"><h4>② Sel Pengiring (Companion Cell)</h4><p>Kaya organel & inti sel. Menyuplai energi dan mengontrol pembuluh tapis.</p></div>
+            <div class="comp-item gold"><h4>③ Parenkim Floem</h4><p>Menyimpan cadangan makanan (pati, lemak).</p></div>
+            <div class="comp-item gold"><h4>④ Serat Floem</h4><p>Sokongan struktural bagi untaian pembuluh floem.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           SLIDE 6 — XILEM vs FLOEM
+           ============================================================ -->
+      <div class="slide slide-green-bg" data-title="Xilem vs Floem">
+        <div class="slide-inner">
+          <span class="slide-badge">✦ Perbandingan</span>
+          <div class="slide-title">Xilem <em>vs</em> Floem</div>
+
+          <!-- VS illustration -->
+          <div class="illus-wrap" style="height:160px; background:rgba(0,0,0,.2); border-radius:18px;">
+            <svg viewBox="0 0 500 160" xmlns="http://www.w3.org/2000/svg">
+              <!-- Xilem side -->
+              <rect x="20" y="20" width="180" height="120" rx="14" fill="rgba(67,97,238,.1)" stroke="#4361ee" stroke-width="2"/>
+              <text x="110" y="45" fill="#a8c8ff" font-size="14" font-family="Playfair Display,serif" font-weight="700" text-anchor="middle">💧 XILEM</text>
+              <text x="110" y="65" fill="rgba(255,255,255,.6)" font-size="10" font-family="Nunito,sans-serif" text-anchor="middle">Air + Mineral</text>
+              <text x="110" y="82" fill="#74c69d" font-size="20" text-anchor="middle">↑</text>
+              <text x="110" y="99" fill="rgba(255,255,255,.5)" font-size="10" font-family="Nunito,sans-serif" text-anchor="middle">Satu arah</text>
+              <text x="110" y="118" fill="rgba(255,255,255,.45)" font-size="10" font-family="Nunito,sans-serif" text-anchor="middle">Sel mati · Lignin</text>
+              <!-- VS badge -->
+              <circle cx="250" cy="80" r="22" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/>
+              <text x="250" y="87" fill="rgba(255,255,255,.7)" font-size="16" font-family="Playfair Display,serif" font-weight="900" text-anchor="middle">VS</text>
+              <!-- Floem side -->
+              <rect x="300" y="20" width="180" height="120" rx="14" fill="rgba(244,185,66,.08)" stroke="#f4b942" stroke-width="2"/>
+              <text x="390" y="45" fill="#f4b942" font-size="14" font-family="Playfair Display,serif" font-weight="700" text-anchor="middle">🍬 FLOEM</text>
+              <text x="390" y="65" fill="rgba(255,255,255,.6)" font-size="10" font-family="Nunito,sans-serif" text-anchor="middle">Hasil Fotosintesis</text>
+              <text x="390" y="82" fill="#f4b942" font-size="20" text-anchor="middle">↕</text>
+              <text x="390" y="99" fill="rgba(255,255,255,.5)" font-size="10" font-family="Nunito,sans-serif" text-anchor="middle">Dua arah</text>
+              <text x="390" y="118" fill="rgba(255,255,255,.45)" font-size="10" font-family="Nunito,sans-serif" text-anchor="middle">Sel hidup · Selulosa</text>
+            </svg>
+          </div>
+
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th>Aspek</th><th>💧 Xilem</th><th>🍬 Floem</th></tr></thead>
+              <tbody>
+                <tr><td>Zat yang diangkut</td><td>Air + garam mineral</td><td>Gula hasil fotosintesis</td></tr>
+                <tr><td>Arah aliran</td><td>Satu arah ↑</td><td>Dua arah ↕</td></tr>
+                <tr><td>Kondisi sel utama</td><td>Sel mati</td><td>Sel hidup (tanpa inti)</td></tr>
+                <tr><td>Kandungan dinding</td><td>Lignin (keras)</td><td>Selulosa (lunak)</td></tr>
+                <tr><td>Disebut juga</td><td>Pembuluh Kayu</td><td>Pembuluh Tapis</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="highlight">
+            <div class="highlight-text">🧠 <strong>Trik Ingat:</strong> Xi<strong style="color:var(--g5)">lem</strong> = air naik ke atas (satu arah, seperti hujan tidak pernah turun kembali ke awan). F<strong style="color:var(--gold2)">loem</strong> = makanan dibagi ke seluruh tubuh (bisa ke mana saja).</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           SLIDE 7 — DIKOTIL vs MONOKOTIL intro
+           ============================================================ -->
+      <div class="slide slide-gold-bg" data-title="Dikotil & Monokotil">
+        <div class="slide-inner">
+          <span class="slide-badge">✦ Bab 4</span>
+          <div class="slide-title"><em>Dikotil</em> vs <em>Monokotil</em></div>
+          <div class="slide-subtitle">Tumbuhan berbiji (Angiospermae) dibagi berdasarkan jumlah <strong style="color:var(--gold2)">kotiledon (keping biji)</strong>.</div>
+
+          <!-- Illustration: seed comparison -->
+          <div class="illus-wrap" style="height:185px; background:rgba(0,0,0,.2); border-radius:18px;">
+            <svg viewBox="0 0 500 185" xmlns="http://www.w3.org/2000/svg">
+              <!-- Dikotil seed (bean shape) split in two -->
+              <g transform="translate(100,92)">
+                <!-- left half -->
+                <path d="M0,0 Q-10,-45 -25,-50 Q-55,-52 -58,-25 Q-60,0 -45,30 Q-30,55 0,55 Z" fill="rgba(45,106,79,.5)" stroke="#40916c" stroke-width="2"/>
+                <!-- right half -->
+                <path d="M0,0 Q10,-45 25,-50 Q55,-52 58,-25 Q60,0 45,30 Q30,55 0,55 Z" fill="rgba(45,106,79,.4)" stroke="#40916c" stroke-width="2"/>
+                <!-- embryo line -->
+                <line x1="0" y1="-45" x2="0" y2="45" stroke="#74c69d" stroke-width="1.5" stroke-dasharray="3,2"/>
+                <text x="0" y="-58" fill="#74c69d" font-size="11" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">DIKOTIL</text>
+                <text x="0" y="70" fill="rgba(255,255,255,.55)" font-size="9.5" font-family="Nunito,sans-serif" text-anchor="middle">2 keping biji</text>
+                <text x="0" y="82" fill="rgba(255,255,255,.4)" font-size="9" font-family="Nunito,sans-serif" text-anchor="middle">Kacang, Mangga</text>
+              </g>
+              <!-- Monokotil seed (corn) -->
+              <g transform="translate(360,92)">
+                <ellipse cx="0" cy="0" rx="42" ry="58" fill="rgba(244,185,66,.25)" stroke="#f4b942" stroke-width="2"/>
+                <ellipse cx="10" cy="-10" rx="18" ry="25" fill="rgba(244,185,66,.15)" stroke="#f4b942" stroke-width="1" stroke-dasharray="3,2"/>
+                <text x="0" y="-68" fill="#f4b942" font-size="11" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">MONOKOTIL</text>
+                <text x="0" y="72" fill="rgba(255,255,255,.55)" font-size="9.5" font-family="Nunito,sans-serif" text-anchor="middle">1 keping biji</text>
+                <text x="0" y="84" fill="rgba(255,255,255,.4)" font-size="9" font-family="Nunito,sans-serif" text-anchor="middle">Jagung, Padi</text>
+              </g>
+              <!-- VS -->
+              <text x="250" y="98" fill="rgba(255,255,255,.35)" font-size="22" font-family="Playfair Display,serif" font-weight="700" text-anchor="middle">⟺</text>
+            </svg>
+          </div>
+
+          <div class="split">
+            <div class="split-a">
+              <h4>🌳 Dikotil (Dua Keping)</h4>
+              <ul>
+                <li><strong>2 kotiledon</strong> — biji dapat dibelah dua</li>
+                <li>Akar <strong>tunggang</strong></li>
+                <li>Batang <strong>berkambium</strong></li>
+                <li>Berkas pengangkut <strong>melingkar</strong></li>
+                <li>Tulang daun <strong>menyirip / menjari</strong></li>
+                <li>Bunga kelipatan <strong>2, 4, atau 5</strong></li>
+              </ul>
+            </div>
+            <div class="split-b">
+              <h4>🌾 Monokotil (Satu Keping)</h4>
+              <ul>
+                <li><strong>1 kotiledon</strong> — tidak bisa dibelah simetris</li>
+                <li>Akar <strong>serabut</strong></li>
+                <li>Batang <strong>tidak berkambium</strong></li>
+                <li>Berkas pengangkut <strong>tersebar</strong></li>
+                <li>Tulang daun <strong>sejajar / melengkung</strong></li>
+                <li>Bunga kelipatan <strong>3</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           SLIDE 8 — ORGAN COMPARISON (Akar, Batang, Daun)
+           ============================================================ -->
+      <div class="slide slide-gold-bg" data-title="Perbedaan Organ">
+        <div class="slide-inner">
+          <span class="slide-badge">✦ Bab 4 Detail</span>
+          <div class="slide-title">Perbedaan <em>Per Organ</em></div>
+
+          <!-- Organ illustrations -->
+          <div class="illus-wrap" style="height:190px; background:rgba(0,0,0,.2); border-radius:18px;">
+            <svg viewBox="0 0 500 190" xmlns="http://www.w3.org/2000/svg">
+              <!-- ROOTS comparison -->
+              <!-- Dikotil taproot -->
+              <g transform="translate(80,20)">
+                <text x="0" y="12" fill="#74c69d" font-size="10" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">🌳 Akar Tunggang</text>
+                <!-- main root -->
+                <line x1="0" y1="18" x2="0" y2="90" stroke="#40916c" stroke-width="5" stroke-linecap="round"/>
+                <!-- lateral roots -->
+                <line x1="0" y1="35" x2="-22" y2="55" stroke="#40916c" stroke-width="2"/>
+                <line x1="0" y1="50" x2="20" y2="70" stroke="#40916c" stroke-width="2"/>
+                <line x1="0" y1="65" x2="-18" y2="85" stroke="#40916c" stroke-width="1.5"/>
+                <line x1="0" y1="75" x2="15" y2="92" stroke="#40916c" stroke-width="1.5"/>
+              </g>
+              <!-- Monokotil fibrous -->
+              <g transform="translate(200,20)">
+                <text x="0" y="12" fill="#f4b942" font-size="10" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">🌾 Akar Serabut</text>
+                <line x1="-20" y1="18" x2="-25" y2="90" stroke="#b08968" stroke-width="2"/>
+                <line x1="-10" y1="18" x2="-15" y2="88" stroke="#b08968" stroke-width="2"/>
+                <line x1="0" y1="18" x2="-2" y2="90" stroke="#b08968" stroke-width="2"/>
+                <line x1="10" y1="18" x2="14" y2="88" stroke="#b08968" stroke-width="2"/>
+                <line x1="20" y1="18" x2="26" y2="90" stroke="#b08968" stroke-width="2"/>
+              </g>
+              <!-- STEM CROSS-SECTIONS -->
+              <!-- Dikotil: circular bundles -->
+              <g transform="translate(330,20)">
+                <text x="0" y="12" fill="#74c69d" font-size="10" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">Batang Dikotil</text>
+                <circle cx="0" cy="60" r="50" fill="rgba(45,106,79,.2)" stroke="#40916c" stroke-width="2"/>
+                <!-- bundles in ring -->
+                <circle cx="0" cy="18" r="6" fill="#4361ee" opacity=".7"/>
+                <circle cx="35" cy="43" r="6" fill="#4361ee" opacity=".7"/>
+                <circle cx="35" cy="77" r="6" fill="#4361ee" opacity=".7"/>
+                <circle cx="0" cy="102" r="6" fill="#4361ee" opacity=".7"/>
+                <circle cx="-35" cy="77" r="6" fill="#4361ee" opacity=".7"/>
+                <circle cx="-35" cy="43" r="6" fill="#4361ee" opacity=".7"/>
+              </g>
+              <!-- Monokotil: scattered bundles -->
+              <g transform="translate(450,20)">
+                <text x="0" y="12" fill="#f4b942" font-size="10" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">Batang Monokotil</text>
+                <circle cx="0" cy="60" r="50" fill="rgba(127,85,57,.15)" stroke="#b08968" stroke-width="2"/>
+                <!-- random dots -->
+                <circle cx="12" cy="28" r="5" fill="#f4b942" opacity=".7"/>
+                <circle cx="-20" cy="38" r="4" fill="#f4b942" opacity=".65"/>
+                <circle cx="30" cy="52" r="5" fill="#f4b942" opacity=".7"/>
+                <circle cx="-10" cy="60" r="4" fill="#f4b942" opacity=".6"/>
+                <circle cx="20" cy="72" r="5" fill="#f4b942" opacity=".65"/>
+                <circle cx="-30" cy="75" r="4" fill="#f4b942" opacity=".6"/>
+                <circle cx="5" cy="88" r="5" fill="#f4b942" opacity=".7"/>
+                <circle cx="-18" cy="92" r="4" fill="#f4b942" opacity=".6"/>
+                <circle cx="35" cy="84" r="4" fill="#f4b942" opacity=".65"/>
+              </g>
+              <!-- bottom labels -->
+              <text x="80" y="180" fill="rgba(255,255,255,.4)" font-size="9" font-family="Nunito,sans-serif" text-anchor="middle">Ada akar utama</text>
+              <text x="200" y="180" fill="rgba(255,255,255,.4)" font-size="9" font-family="Nunito,sans-serif" text-anchor="middle">Seragam semua</text>
+              <text x="330" y="180" fill="rgba(255,255,255,.4)" font-size="9" font-family="Nunito,sans-serif" text-anchor="middle">Berkas melingkar</text>
+              <text x="450" y="180" fill="rgba(255,255,255,.4)" font-size="9" font-family="Nunito,sans-serif" text-anchor="middle">Berkas tersebar</text>
+            </svg>
+          </div>
+
+          <!-- LEAF patterns -->
+          <div style="margin-bottom:6px;font-family:'Playfair Display',serif;font-size:.95rem;color:var(--g5);">🍃 Pertulangan Daun</div>
+          <div class="split">
+            <div class="split-a">
+              <h4>🌳 Dikotil</h4>
+              <ul>
+                <li>Menyirip 🐟 — seperti tulang ikan</li>
+                <li>Menjari ✋ — seperti jari tangan</li>
+                <li>Contoh: daun mangga, singkong</li>
+              </ul>
+            </div>
+            <div class="split-b">
+              <h4>🌾 Monokotil</h4>
+              <ul>
+                <li>Sejajar ≡ — garis lurus sejajar</li>
+                <li>Melengkung ⌒ — garis melengkung</li>
+                <li>Contoh: daun rumput, pisang</li>
+              </ul>
+            </div>
+          </div>
+
+          <div style="margin-bottom:6px;font-family:'Playfair Display',serif;font-size:.95rem;color:var(--gold2);">🌸 Bunga</div>
+          <div class="split">
+            <div class="split-a"><h4>🌳 Dikotil</h4><ul><li>Kelipatan 2, 4, atau <strong>5</strong></li><li>Contoh: mawar (5 mahkota)</li></ul></div>
+            <div class="split-b"><h4>🌾 Monokotil</h4><ul><li>Kelipatan <strong>3</strong></li><li>Contoh: anggrek (3+3 mahkota)</li></ul></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           SLIDE 9 — TABEL LENGKAP
+           ============================================================ -->
+      <div class="slide slide-gold-bg" data-title="Tabel Perbandingan">
+        <div class="slide-inner">
+          <span class="slide-badge">✦ Bab 4 Ringkas</span>
+          <div class="slide-title">Tabel <em>Perbandingan</em> Lengkap</div>
+
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th>Ciri</th><th>🌳 Dikotil</th><th>🌾 Monokotil</th></tr></thead>
+              <tbody>
+                <tr><td>Biji</td><td>2 keping (dikotiledon)</td><td>1 keping (monokotiledon)</td></tr>
+                <tr><td>Bunga</td><td>Kelipatan 2, 4, atau 5</td><td>Kelipatan 3</td></tr>
+                <tr><td>Akar</td><td>Sistem tunggang</td><td>Sistem serabut</td></tr>
+                <tr><td>Batang</td><td>Berkambium, berkas melingkar</td><td>Tidak berkambium, berkas tersebar</td></tr>
+                <tr><td>Daun</td><td>Menyirip / menjari</td><td>Sejajar / melengkung</td></tr>
+                <tr><td>Contoh</td><td>Mangga, kacang, mawar</td><td>Padi, jagung, anggrek</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="highlight">
+            <div class="highlight-text">🧠 <strong>Trik Ingat Dikotil:</strong><br/>
+            Di<strong style="color:var(--gold2)">KOTIl</strong> = <strong style="color:var(--gold2)">2</strong> keping, akar <strong style="color:var(--gold2)">TUNGGANG</strong>, batang ber<strong style="color:var(--gold2)">KAMBIUM</strong>, berkas <strong style="color:var(--gold2)">MELINGKAR</strong>, tulang daun <strong style="color:var(--gold2)">MEN-YIRIP/JA-RI</strong>, bunga <strong style="color:var(--gold2)">2/4/5</strong>.</div>
+          </div>
+
+          <div class="highlight" style="border-color:rgba(116,198,157,.3);background:linear-gradient(135deg,rgba(116,198,157,.08),rgba(45,106,79,.08));">
+            <div class="highlight-text">🧠 <strong>Trik Ingat Monokotil:</strong><br/>
+            <strong style="color:var(--g5)">MONO</strong> = <strong style="color:var(--g5)">1</strong> keping, akar <strong style="color:var(--g5)">SERABUT</strong>, batang <strong style="color:var(--g5)">TANPA kambium</strong>, berkas <strong style="color:var(--g5)">TERSEBAR</strong>, tulang daun <strong style="color:var(--g5)">SEJAJAR</strong>, bunga kelipatan <strong style="color:var(--g5)">3</strong>.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           SLIDE 10 — RINGKASAN
+           ============================================================ -->
+      <div class="slide slide-green-bg" data-title="Ringkasan">
+        <div class="slide-inner">
+          <span class="slide-badge">✦ Penutup</span>
+          <div class="slide-title">Ringkasan <em>Materi</em></div>
+          <div class="slide-subtitle">Poin-poin kunci yang perlu diingat 🌿</div>
+
+          <div class="ring-list">
+            <div class="ring-item"><div class="ring-num">01</div><div class="ring-text">Jaringan tumbuhan: <strong>meristem</strong> (aktif membelah) dan <strong>jaringan dewasa</strong> (sudah berdiferensiasi).</div></div>
+            <div class="ring-item"><div class="ring-num">02</div><div class="ring-text">Meristem apikal ujung <strong>batang</strong> → dilindungi primordia daun. Ujung <strong>akar</strong> → dilindungi kaliptra (tudung akar).</div></div>
+            <div class="ring-item"><div class="ring-num">03</div><div class="ring-text"><strong>Xilem</strong> = air + mineral, akar → daun, aliran ↑ satu arah. Sel mati, mengandung lignin.</div></div>
+            <div class="ring-item"><div class="ring-num">04</div><div class="ring-text"><strong>Floem</strong> = hasil fotosintesis, daun → seluruh tubuh, aliran ↕ dua arah. Sel hidup.</div></div>
+            <div class="ring-item"><div class="ring-num">05</div><div class="ring-text"><strong>Dikotil</strong> = 2 kotiledon, akar tunggang, berkambium, berkas melingkar, daun menyirip/menjari, bunga 2/4/5.</div></div>
+            <div class="ring-item"><div class="ring-num">06</div><div class="ring-text"><strong>Monokotil</strong> = 1 kotiledon, akar serabut, tanpa kambium, berkas tersebar, daun sejajar/melengkung, bunga ×3.</div></div>
+            <div class="ring-item"><div class="ring-num">07</div><div class="ring-text">Kambium hanya dimiliki dikotil → pertumbuhan sekunder (batang membesar). Monokotil tidak punya.</div></div>
+          </div>
+
+          <div style="text-align:center;margin-top:8px;padding:18px;background:rgba(116,198,157,.1);border-radius:16px;border:1px solid rgba(116,198,157,.2);">
+            <div style="font-size:2.5rem;margin-bottom:8px;">🎮</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--g5);margin-bottom:6px;">Slide berikutnya: Game Pembelajaran!</div>
+            <div style="font-size:.85rem;color:rgba(255,255,255,.55);">Uji pemahamanmu dengan kuis interaktif dan matching game.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           SLIDE 11 — GAME
+           ============================================================ -->
+      <div class="slide" style="background:linear-gradient(160deg,rgba(27,67,50,.5) 0%,var(--g1) 100%);" data-title="🎮 Game">
+        <div class="slide-inner">
+          <span class="slide-badge">✦ Evaluasi</span>
+          <div class="slide-title">🎮 <em>Game</em> Pembelajaran</div>
+
+          <!-- Mode selector -->
+          <div class="mode-tabs">
+            <button class="mode-tab active" onclick="switchMode('quiz')" id="tab-quiz">📝 Kuis</button>
+            <button class="mode-tab" onclick="switchMode('match')" id="tab-match">🔗 Cocokkan</button>
+          </div>
+
+          <!-- QUIZ MODE -->
+          <div id="mode-quiz">
+            <div class="game-wrap">
+              <div class="game-hud">
+                <div class="hud-box"><div class="hud-lbl">Soal</div><div class="hud-val" id="q-num">1/12</div></div>
+                <div class="hud-box"><div class="hud-lbl">Skor</div><div class="hud-val" id="score-val">0</div></div>
+                <div class="hud-box"><div class="hud-lbl">✅</div><div class="hud-val" id="cor-val">0</div></div>
+                <div class="hud-box"><div class="hud-lbl">❌</div><div class="hud-val" id="wrg-val">0</div></div>
+              </div>
+              <div class="prog-wrap"><div class="prog-bar" id="prog-bar" style="width:8.3%;"></div></div>
+              <div id="quiz-area">
+                <div class="q-card"><div class="q-text" id="q-text">Memuat soal...</div></div>
+                <div class="opts-grid" id="opts-grid"></div>
+                <div class="fb-box" id="fb-box"></div>
+                <button class="game-btn" id="next-btn" style="display:none;" onclick="nextQ()">Soal Berikutnya →</button>
+              </div>
+              <div class="result-scr" id="result-scr">
+                <div class="res-emoji" id="res-emoji">🌿</div>
+                <div class="res-h" id="res-title">Selesai!</div>
+                <div class="res-score" id="res-score">0/120</div>
+                <div class="res-msg" id="res-msg">Terima kasih!</div>
+                <button class="game-btn" onclick="restartQuiz()">🔁 Ulangi</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- MATCH MODE -->
+          <div id="mode-match" style="display:none;">
+            <div class="game-wrap">
+              <div class="game-hud" style="grid-template-columns:1fr 1fr;">
+                <div class="hud-box"><div class="hud-lbl">Pasangan Benar</div><div class="hud-val" id="match-score">0/7</div></div>
+                <div class="hud-box"><div class="hud-lbl">Percobaan</div><div class="hud-val" id="match-tries">0</div></div>
+              </div>
+              <p style="text-align:center;opacity:.65;font-size:.82rem;margin-bottom:10px;">Ketuk istilah → ketuk definisinya!</p>
+              <div class="match-area">
+                <div class="match-col"><h4>📌 Istilah</h4><div id="terms-col"></div></div>
+                <div class="match-col"><h4>📖 Definisi</h4><div id="defs-col"></div></div>
+              </div>
+              <div class="match-status" id="match-status"></div>
+              <div id="match-result" style="text-align:center;display:none;margin-top:12px;">
+                <div style="font-size:2.5rem;margin-bottom:8px;" id="match-res-emoji">🏆</div>
+                <div style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--gold2);margin-bottom:12px;" id="match-res-msg">Semua cocok!</div>
+                <button class="game-btn" onclick="restartMatch()">🔁 Acak Ulang</button>
+              </div>
+              <button class="game-btn" id="match-reset-btn" onclick="restartMatch()" style="margin-top:12px;background:rgba(255,255,255,.1);color:var(--white);box-shadow:none;">🔀 Acak</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /#slides-inner -->
+  </div><!-- /#slides-track -->
+
+  <!-- BOTTOM NAV -->
+  <div id="bottom-nav">
+    <button class="nav-btn" id="prev-btn" onclick="goSlide(curSlide-1)" disabled>← Kembali</button>
+    <div id="dots"></div>
+    <button class="nav-btn primary" id="next-btn-nav" onclick="goSlide(curSlide+1)">Lanjut →</button>
+  </div>
+
+</div><!-- /#app -->
+
+<!-- SIDE MENU OVERLAY -->
+<div id="menu-overlay" onclick="toggleMenu()"></div>
+<div id="side-menu">
+  <button id="menu-close" onclick="toggleMenu()">✕</button>
+  <div id="menu-title">📚 Daftar Materi</div>
+  <div id="menu-subtitle">IPA Kelas 8 — Jaringan Tumbuhan</div>
+  <div class="menu-list" id="menu-list"></div>
+</div>
+
+<script>
+/* ============================================================
+   SLIDES DATA
+   ============================================================ */
+const SLIDE_TITLES = [
+  {icon:'🏠', label:'Halaman Judul'},
+  {icon:'🌱', label:'Apa itu Jaringan?'},
+  {icon:'🔬', label:'Meristem Apikal'},
+  {icon:'📊', label:'Jenis-Jenis Meristem'},
+  {icon:'💧', label:'Xilem'},
+  {icon:'🍬', label:'Floem'},
+  {icon:'⚖️', label:'Xilem vs Floem'},
+  {icon:'🌳', label:'Dikotil & Monokotil'},
+  {icon:'🔍', label:'Perbedaan Per Organ'},
+  {icon:'📋', label:'Tabel Perbandingan'},
+  {icon:'📝', label:'Ringkasan'},
+  {icon:'🎮', label:'Game Pembelajaran'},
+];
+
+const TOTAL = 12;
+let curSlide = 0;
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+function goSlide(n) {
+  if (n < 0 || n >= TOTAL) return;
+  curSlide = n;
+  document.getElementById('slides-inner').style.transform = `translateX(-${curSlide * 100}%)`;
+  updateNav();
+  updateMenu();
+  document.getElementById('topbar-title').textContent = '🌿 ' + SLIDE_TITLES[curSlide].label;
+  // scroll slide back to top
+  document.querySelectorAll('.slide')[curSlide].scrollTop = 0;
+}
+
+function updateNav() {
+  document.getElementById('slide-counter').textContent = `${curSlide+1} / ${TOTAL}`;
+  document.getElementById('prev-btn').disabled = curSlide === 0;
+  document.getElementById('next-btn-nav').disabled = curSlide === TOTAL-1;
+  document.getElementById('next-btn-nav').textContent = curSlide === TOTAL-1 ? '✓ Selesai' : 'Lanjut →';
+
+  // dots
+  const dots = document.querySelectorAll('.dot');
+  dots.forEach((d,i) => {
+    d.classList.toggle('active', i === curSlide);
+    if(i < curSlide) d.classList.add('visited');
+  });
+}
+
+function updateMenu() {
+  document.querySelectorAll('.menu-item').forEach((el,i) => {
+    el.classList.toggle('active', i === curSlide);
+  });
+}
+
+/* Build dots */
+function buildDots() {
+  const c = document.getElementById('dots');
+  for(let i=0;i<TOTAL;i++){
+    const d = document.createElement('div');
+    d.className = 'dot';
+    d.onclick = ()=>goSlide(i);
+    d.title = SLIDE_TITLES[i].label;
+    c.appendChild(d);
+  }
+}
+
+/* Build menu */
+function buildMenu() {
+  const ml = document.getElementById('menu-list');
+  SLIDE_TITLES.forEach((s,i)=>{
+    const el = document.createElement('div');
+    el.className = 'menu-item';
+    el.innerHTML = `<span class="menu-item-icon">${s.icon}</span><span class="menu-item-num">0${i+1}</span><span class="menu-item-text">${s.label}</span>`;
+    el.onclick = ()=>{goSlide(i); toggleMenu();};
+    ml.appendChild(el);
+  });
+}
+
+function toggleMenu() {
+  document.getElementById('menu-overlay').classList.toggle('open');
+  document.getElementById('side-menu').classList.toggle('open');
+  updateMenu();
+}
+
+/* ============================================================
+   TOUCH / SWIPE
+   ============================================================ */
+let touchX=null, touchY=null;
+const track = document.getElementById('slides-track');
+track.addEventListener('touchstart', e=>{
+  touchX = e.touches[0].clientX;
+  touchY = e.touches[0].clientY;
+},{passive:true});
+track.addEventListener('touchend', e=>{
+  if(touchX===null) return;
+  const dx = e.changedTouches[0].clientX - touchX;
+  const dy = e.changedTouches[0].clientY - touchY;
+  if(Math.abs(dx)>50 && Math.abs(dx)>Math.abs(dy)){
+    if(dx < 0) goSlide(curSlide+1);
+    else goSlide(curSlide-1);
+  }
+  touchX=null; touchY=null;
+},{passive:true});
+
+/* Keyboard */
+document.addEventListener('keydown', e=>{
+  if(e.key==='ArrowRight'||e.key==='ArrowDown') goSlide(curSlide+1);
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp') goSlide(curSlide-1);
+});
+
+/* ============================================================
+   QUIZ GAME
+   ============================================================ */
+const questions = [
+  { q:"Jaringan yang sel-selnya aktif membelah untuk pertumbuhan tumbuhan disebut...", opts:["Jaringan Dewasa","Jaringan Meristem","Jaringan Epidermis","Jaringan Sklerenkim"], ans:1, exp:"Meristem = jaringan muda yang aktif bermitosis untuk pertumbuhan! ✅" },
+  { q:"Tudung akar (kaliptra) berfungsi untuk...", opts:["Menyerap air dari tanah","Tempat fotosintesis","Melindungi meristem apikal ujung akar","Mengangkut mineral ke daun"], ans:2, exp:"Kaliptra melindungi sel meristem dari kerusakan mekanis saat menembus tanah. ✅" },
+  { q:"Xilem mengangkut zat dari...", opts:["Daun ke akar","Akar ke daun","Daun ke buah","Batang ke akar"], ans:1, exp:"Xilem: air+mineral dari akar → daun (satu arah ke atas). ✅" },
+  { q:"Komponen Floem yang berfungsi menyuplai energi bagi pembuluh tapis adalah...", opts:["Trakea","Trakeid","Serat Floem","Sel Pengiring"], ans:3, exp:"Sel Pengiring kaya organel, mengontrol aktivitas pembuluh tapis. ✅" },
+  { q:"Berkas pengangkut batang DIKOTIL tersusun secara...", opts:["Tersebar acak","Di pusat batang","Melingkar rapi","Acak tidak beraturan"], ans:2, exp:"Dikotil: berkas pengangkut tersusun rapi melingkar. ✅" },
+  { q:"Tumbuhan Monokotil TIDAK memiliki...", opts:["Xilem","Floem","Kambium","Epidermis"], ans:2, exp:"Monokotil tidak punya kambium → batang tidak membesar (pertumbuhan sekunder). ✅" },
+  { q:"Aliran cairan pada FLOEM bersifat...", opts:["Satu arah dari bawah ke atas","Satu arah dari atas ke bawah","Dua arah (sesuai kebutuhan)","Tidak ada aliran"], ans:2, exp:"Floem mengalir dua arah: dari daun ke bagian yang butuh nutrisi. ✅" },
+  { q:"Pertulangan daun menyirip/menjari merupakan ciri tumbuhan...", opts:["Monokotil","Dikotil","Lumut","Paku"], ans:1, exp:"Dikotil: tulang daun menyirip (ikan) atau menjari (jari tangan). ✅" },
+  { q:"Sel mati berdinding tebal yang memberikan kekuatan pada Xilem adalah...", opts:["Parenkim Xilem","Sel Pengiring","Serat Xilem","Pembuluh Tapis"], ans:2, exp:"Serat Xilem: sel mati, dinding tebal (lignin) → kekuatan mekanis. ✅" },
+  { q:"Sistem akar serabut merupakan ciri khas tumbuhan...", opts:["Dikotil","Gymnospermae","Monokotil","Pteridophyta"], ans:2, exp:"Monokotil (padi, jagung) memiliki sistem akar serabut. ✅" },
+  { q:"Bagian bunga Monokotil berjumlah...", opts:["Kelipatan 2","Kelipatan 4","Kelipatan 5","Kelipatan 3"], ans:3, exp:"Ciri khas Monokotil: bagian bunga kelipatan 3. ✅" },
+  { q:"Meristem Lateral (Kambium) menghasilkan pertumbuhan...", opts:["Primer: memanjang","Sekunder: membesar","Primer: melebar","Tidak ada pertumbuhan"], ans:1, exp:"Kambium = meristem lateral → pertumbuhan sekunder → batang membesar. ✅" },
+];
+let curQ=0, score=0, correct=0, wrong=0;
+let shuffled=[...questions];
+function shuffle(a){return a.sort(()=>Math.random()-.5);}
+function loadQ(){
+  const q=shuffled[curQ];
+  document.getElementById('q-num').textContent=`${curQ+1}/12`;
+  document.getElementById('q-text').textContent=q.q;
+  document.getElementById('prog-bar').style.width=`${((curQ+1)/12)*100}%`;
+  document.getElementById('fb-box').style.display='none';
+  document.getElementById('next-btn').style.display='none';
+  const g=document.getElementById('opts-grid'); g.innerHTML='';
+  ['A','B','C','D'].forEach((L,i)=>{
+    const b=document.createElement('button'); b.className='opt-btn';
+    b.innerHTML=`<span class="opt-ltr">${L}</span>${q.opts[i]}`;
+    b.onclick=()=>pick(i); g.appendChild(b);
+  });
+}
+function pick(idx){
+  const q=shuffled[curQ];
+  document.querySelectorAll('.opt-btn').forEach(b=>b.disabled=true);
+  const fb=document.getElementById('fb-box'); fb.style.display='block';
+  if(idx===q.ans){document.querySelectorAll('.opt-btn')[idx].classList.add('correct');score+=10;correct++;fb.className='fb-box correct';fb.textContent='✅ Benar! '+q.exp;}
+  else{document.querySelectorAll('.opt-btn')[idx].classList.add('wrong');document.querySelectorAll('.opt-btn')[q.ans].classList.add('correct');wrong++;fb.className='fb-box wrong';fb.textContent='❌ Salah! '+q.exp;}
+  document.getElementById('score-val').textContent=score;
+  document.getElementById('cor-val').textContent=correct;
+  document.getElementById('wrg-val').textContent=wrong;
+  document.getElementById('next-btn').style.display='block';
+}
+function nextQ(){curQ++;if(curQ<12)loadQ();else showRes();}
+function showRes(){
+  document.getElementById('quiz-area').style.display='none';
+  const rs=document.getElementById('result-scr'); rs.classList.add('show');
+  document.getElementById('res-score').textContent=`${score}/120`;
+  let e,t,m;
+  if(score>=110){e='🏆';t='Sempurna!';m='Kamu calon ilmuwan botani sejati! 🌟';}
+  else if(score>=80){e='🌿';t='Sangat Bagus!';m='Hampir sempurna! Ulangi yang kurang. 💪';}
+  else if(score>=60){e='😊';t='Cukup Baik!';m='Sudah paham sebagian. Baca ulang yuk! 📚';}
+  else{e='🌱';t='Terus Belajar!';m='Pelajari lagi materinya, kamu pasti bisa! 🌱';}
+  document.getElementById('res-emoji').textContent=e;
+  document.getElementById('res-title').textContent=t;
+  document.getElementById('res-msg').textContent=m;
+}
+function restartQuiz(){
+  curQ=0;score=0;correct=0;wrong=0;
+  shuffled=shuffle([...questions]);
+  ['score-val','cor-val','wrg-val'].forEach(id=>document.getElementById(id).textContent='0');
+  document.getElementById('result-scr').classList.remove('show');
+  document.getElementById('quiz-area').style.display='block';
+  loadQ();
+}
+loadQ();
+
+/* ============================================================
+   MATCHING GAME
+   ============================================================ */
+const matchPairs=[
+  {term:'Xilem',def:'Pengangkut air & mineral dari akar ke daun'},
+  {term:'Floem',def:'Pengedar hasil fotosintesis ke seluruh tubuh'},
+  {term:'Trakeid',def:'Sel mati xilem, ujung meruncing, perpindahan lewat pit'},
+  {term:'Sel Pengiring',def:'Sel floem yang menyuplai energi ke pembuluh tapis'},
+  {term:'Kaliptra',def:'Tudung akar pelindung meristem apikal ujung akar'},
+  {term:'Kambium',def:'Meristem lateral yang menyebabkan batang membesar'},
+  {term:'Kotiledon',def:'Keping biji — 1 pada monokotil, 2 pada dikotil'},
+];
+let selTerm=null,selDef=null,matchCorrect=0,matchTries=0,matchShuffled=[];
+function initMatch(){
+  matchCorrect=0;matchTries=0;selTerm=null;selDef=null;
+  document.getElementById('match-score').textContent='0/7';
+  document.getElementById('match-tries').textContent='0';
+  document.getElementById('match-status').textContent='';
+  document.getElementById('match-result').style.display='none';
+  document.getElementById('match-reset-btn').style.display='block';
+  matchShuffled=shuffle([...matchPairs]);
+  const defsS=shuffle([...matchPairs]);
+  const tc=document.getElementById('terms-col'),dc=document.getElementById('defs-col');
+  tc.innerHTML='';dc.innerHTML='';
+  tc.style.display='flex';tc.style.flexDirection='column';tc.style.gap='8px';
+  dc.style.display='flex';dc.style.flexDirection='column';dc.style.gap='8px';
+  matchShuffled.forEach((p,i)=>{
+    const t=document.createElement('div'); t.className='match-item'; t.textContent=p.term;
+    t.dataset.idx=i; t.onclick=()=>clickMatch(t,'term'); tc.appendChild(t);
+  });
+  defsS.forEach(p=>{
+    const d=document.createElement('div'); d.className='match-item'; d.textContent=p.def;
+    d.dataset.term=p.term; d.onclick=()=>clickMatch(d,'def'); dc.appendChild(d);
+  });
+}
+function clickMatch(el,type){
+  if(el.classList.contains('matched-ok'))return;
+  if(type==='term'){
+    document.querySelectorAll('#terms-col .match-item').forEach(e=>e.classList.remove('selected'));
+    el.classList.add('selected'); selTerm=el;
+  } else {
+    document.querySelectorAll('#defs-col .match-item').forEach(e=>e.classList.remove('selected'));
+    el.classList.add('selected'); selDef=el;
+  }
+  if(selTerm&&selDef)checkMatch();
+}
+function checkMatch(){
+  matchTries++; document.getElementById('match-tries').textContent=matchTries;
+  const tTerm=matchShuffled[selTerm.dataset.idx].term, dTerm=selDef.dataset.term;
+  if(tTerm===dTerm){
+    selTerm.classList.remove('selected');selTerm.classList.add('matched-ok');selTerm.onclick=null;
+    selDef.classList.remove('selected');selDef.classList.add('matched-ok');selDef.onclick=null;
+    matchCorrect++;
+    document.getElementById('match-score').textContent=`${matchCorrect}/7`;
+    document.getElementById('match-status').textContent='✅ Cocok! Bagus!';
+    if(matchCorrect===7)setTimeout(showMatchResult,600);
+  } else {
+    selTerm.classList.add('matched-err');selDef.classList.add('matched-err');
+    document.getElementById('match-status').textContent='❌ Belum cocok, coba lagi!';
+    setTimeout(()=>{
+      selTerm.classList.remove('selected','matched-err');
+      selDef.classList.remove('selected','matched-err');
+    },700);
+  }
+  selTerm=null;selDef=null;
+}
+function showMatchResult(){
+  document.getElementById('match-result').style.display='block';
+  document.getElementById('match-reset-btn').style.display='none';
+  const e=matchTries<=8?'🏆':matchTries<=14?'🌿':'😊';
+  const m=matchTries<=8?'Luar biasa! Hanya '+matchTries+' percobaan!':matchTries<=14?'Bagus! '+matchTries+' percobaan. Latihan lagi!':'Selesai dengan '+matchTries+' percobaan. Pelajari lagi! 📚';
+  document.getElementById('match-res-emoji').textContent=e;
+  document.getElementById('match-res-msg').textContent=m;
+}
+function restartMatch(){initMatch();}
+
+function switchMode(m){
+  document.getElementById('mode-quiz').style.display=m==='quiz'?'block':'none';
+  document.getElementById('mode-match').style.display=m==='match'?'block':'none';
+  document.getElementById('tab-quiz').classList.toggle('active',m==='quiz');
+  document.getElementById('tab-match').classList.toggle('active',m==='match');
+  if(m==='match')initMatch();
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+buildDots();
+buildMenu();
+updateNav();
+</script>
+</body>
+</html>
