@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-<title>Jaringan Tumbuhan | IPA Kelas 8</title>
+<title>Jaringan Tumbuhan | IPA SMP </title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -517,7 +517,6 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
           <!-- HERO ILLUSTRATION — botanical cross section -->
           <div class="illus-wrap" style="height:200px; background:transparent;">
             <svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg" style="height:200px;">
-              <!-- Background glow -->
               <defs>
                 <radialGradient id="glow1" cx="50%" cy="50%" r="50%">
                   <stop offset="0%" stop-color="#2d6a4f" stop-opacity="0.4"/>
@@ -525,13 +524,9 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
                 </radialGradient>
               </defs>
               <ellipse cx="250" cy="100" rx="220" ry="90" fill="url(#glow1)"/>
-              <!-- Stem cross-section -->
               <circle cx="250" cy="100" r="72" fill="#1b4332" stroke="#40916c" stroke-width="2"/>
-              <!-- Epidermis ring -->
               <circle cx="250" cy="100" r="70" fill="none" stroke="#74c69d" stroke-width="4"/>
-              <!-- Cortex -->
               <circle cx="250" cy="100" r="60" fill="none" stroke="#2d6a4f" stroke-width="2" stroke-dasharray="4,3"/>
-              <!-- Vascular bundles — arranged in ring (dikotil) -->
               <g>
                 <ellipse cx="250" cy="46" rx="9" ry="6" fill="#4361ee" opacity=".85"/>
                 <ellipse cx="250" cy="46" rx="5" ry="3" fill="#74c69d" opacity=".9"/>
@@ -550,18 +545,15 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
                 <ellipse cx="205" cy="64" rx="9" ry="6" fill="#4361ee" opacity=".85" transform="rotate(-36,205,64)"/>
                 <ellipse cx="205" cy="64" rx="5" ry="3" fill="#74c69d" opacity=".9" transform="rotate(-36,205,64)"/>
               </g>
-              <!-- Labels -->
               <text x="370" y="50" fill="#74c69d" font-size="11" font-family="Nunito,sans-serif" font-weight="700">Xilem</text>
               <text x="370" y="66" fill="#f4b942" font-size="10" font-family="Nunito,sans-serif">(biru tua)</text>
               <text x="370" y="94" fill="#74c69d" font-size="11" font-family="Nunito,sans-serif" font-weight="700">Floem</text>
               <text x="370" y="110" fill="#f4b942" font-size="10" font-family="Nunito,sans-serif">(hijau)</text>
               <text x="370" y="138" fill="#74c69d" font-size="11" font-family="Nunito,sans-serif" font-weight="700">Epidermis</text>
               <text x="250" y="104" fill="rgba(255,255,255,0.25)" font-size="9" font-family="Nunito,sans-serif" text-anchor="middle">Korteks</text>
-              <!-- Lines -->
               <line x1="360" y1="48" x2="297" y2="67" stroke="#74c69d" stroke-width="1" stroke-dasharray="3,2" opacity=".5"/>
               <line x1="360" y1="92" x2="258" y2="51" stroke="#74c69d" stroke-width="1" stroke-dasharray="3,2" opacity=".5"/>
               <line x1="360" y1="136" x2="320" y2="102" stroke="#74c69d" stroke-width="1" stroke-dasharray="3,2" opacity=".5"/>
-              <!-- Decorative leaves -->
               <ellipse cx="50" cy="60" rx="30" ry="50" fill="#2d6a4f" opacity=".4" transform="rotate(-40,50,60)"/>
               <line x1="50" y1="20" x2="50" y2="100" stroke="#40916c" stroke-width="1.5" opacity=".5" transform="rotate(-40,50,60)"/>
               <ellipse cx="440" cy="150" rx="25" ry="42" fill="#2d6a4f" opacity=".3" transform="rotate(30,440,150)"/>
@@ -574,6 +566,7 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
             <span class="chip">🍬 Floem</span>
             <span class="chip">🌳 Dikotil</span>
             <span class="chip">🌾 Monokotil</span>
+            <span class="chip">🌿 Organ</span>
             <span class="chip">🎮 Game</span>
           </div>
 
@@ -592,11 +585,8 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
         <div class="slide-inner">
           <span class="slide-badge">✦ Pendahuluan</span>
           <div class="slide-title">Apa itu <em>Jaringan</em> Tumbuhan?</div>
-
-          <!-- Illustration: cell cluster -->
           <div class="illus-wrap" style="height:160px; background:rgba(0,0,0,.2); border-radius:18px;">
             <svg viewBox="0 0 500 160" xmlns="http://www.w3.org/2000/svg">
-              <!-- Cell grid pattern -->
               <defs>
                 <pattern id="cells" x="0" y="0" width="50" height="44" patternUnits="userSpaceOnUse">
                   <rect x="2" y="2" width="44" height="38" rx="6" fill="rgba(45,106,79,0.35)" stroke="#40916c" stroke-width="1.5"/>
@@ -609,27 +599,20 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
                   <circle cx="25" cy="21" r="2.5" fill="#f4b942" opacity=".6"/>
                 </pattern>
               </defs>
-              <!-- Left half: meristem cells (small, active) -->
               <clipPath id="leftHalf"><rect x="0" y="0" width="240" height="160"/></clipPath>
               <rect x="0" y="0" width="240" height="160" fill="url(#cells)" clip-path="url(#leftHalf)" opacity=".9"/>
-              <!-- Right half: mature cells (larger) -->
               <clipPath id="rightHalf"><rect x="260" y="0" width="240" height="160"/></clipPath>
               <rect x="260" y="0" width="240" height="160" fill="url(#cells2)" clip-path="url(#rightHalf)" opacity=".9"/>
-              <!-- Divider -->
               <line x1="250" y1="0" x2="250" y2="160" stroke="rgba(255,255,255,.3)" stroke-width="2" stroke-dasharray="6,4"/>
-              <!-- Labels -->
               <rect x="10" y="8" width="120" height="24" rx="12" fill="rgba(45,106,79,.7)"/>
               <text x="70" y="24" fill="#74c69d" font-size="11" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">🌱 Meristem</text>
               <rect x="370" y="8" width="120" height="24" rx="12" fill="rgba(127,85,57,.6)"/>
               <text x="430" y="24" fill="#f4b942" font-size="11" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">🍂 Dewasa</text>
-              <!-- Arrow in middle -->
               <text x="250" y="90" fill="rgba(255,255,255,.5)" font-size="24" text-anchor="middle">→</text>
               <text x="250" y="108" fill="rgba(255,255,255,.3)" font-size="9" font-family="Nunito,sans-serif" text-anchor="middle">diferensiasi</text>
             </svg>
           </div>
-
           <div class="slide-subtitle">Jaringan tumbuhan = kumpulan sel yang memiliki <strong style="color:var(--g5)">bentuk, fungsi, dan asal yang sama</strong>, bekerja bersama membentuk organ.</div>
-
           <div class="card-row">
             <div class="card">
               <div class="card-icon">🌱</div>
@@ -662,28 +645,19 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
         <div class="slide-inner">
           <span class="slide-badge">✦ Bab 1</span>
           <div class="slide-title"><em>Meristem</em> Apikal</div>
-
-          <!-- Illustration: root tip zones -->
           <div class="illus-wrap" style="height:200px; background:rgba(0,0,0,.25); border-radius:18px;">
             <svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
-              <!-- Root body -->
               <rect x="210" y="0" width="80" height="170" rx="4" fill="rgba(45,106,79,0.3)" stroke="#40916c" stroke-width="1.5"/>
-              <!-- Zone 3: Diferensiasi (top) -->
               <rect x="210" y="0" width="80" height="55" rx="4" fill="rgba(127,85,57,.35)" stroke="#b08968" stroke-width="1"/>
               <text x="250" y="32" fill="#d4a373" font-size="10" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">Zona Diferensiasi</text>
-              <!-- Zone 2: Pemanjangan -->
               <rect x="210" y="57" width="80" height="45" rx="0" fill="rgba(244,185,66,.2)" stroke="#f4b942" stroke-width="1"/>
               <text x="250" y="84" fill="#f4b942" font-size="10" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">Zona Pemanjangan</text>
-              <!-- Zone 1: Pembelahan -->
               <rect x="210" y="104" width="80" height="38" rx="0" fill="rgba(67,97,238,.3)" stroke="#4361ee" stroke-width="1"/>
               <text x="250" y="127" fill="#a8c8ff" font-size="10" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">Zona Pembelahan</text>
-              <!-- Kaliptra / root cap -->
               <ellipse cx="250" cy="155" rx="42" ry="18" fill="rgba(116,198,157,.3)" stroke="#74c69d" stroke-width="2"/>
               <text x="250" y="159" fill="#74c69d" font-size="10" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">Kaliptra</text>
-              <!-- Stem top: primordia -->
               <ellipse cx="250" cy="0" rx="45" ry="12" fill="rgba(116,198,157,.25)" stroke="#74c69d" stroke-width="1.5"/>
               <text x="250" y="3" fill="#74c69d" font-size="9" font-family="Nunito,sans-serif" font-weight="700" text-anchor="middle">Primordia Daun</text>
-              <!-- Arrow labels -->
               <text x="340" y="30" fill="#d4a373" font-size="10" font-family="Nunito,sans-serif">③ Berubah jadi</text>
               <text x="340" y="42" fill="#d4a373" font-size="10" font-family="Nunito,sans-serif">   jaringan khusus</text>
               <line x1="338" y1="30" x2="296" y2="28" stroke="#d4a373" stroke-width="1" opacity=".6"/>
@@ -696,7 +670,6 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
               <line x1="155" y1="155" x2="207" y2="155" stroke="#74c69d" stroke-width="1" opacity=".5"/>
             </svg>
           </div>
-
           <div class="split">
             <div class="split-a">
               <h4>🌿 Ujung Batang</h4>
@@ -715,20 +688,10 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
               </ul>
             </div>
           </div>
-
           <div class="zones">
-            <div class="zone">
-              <div class="zone-num gn">①</div>
-              <div class="zone-text"><h4>Zona Pembelahan</h4><p>Sel-sel aktif bermitosis menghasilkan sel-sel baru untuk menambah panjang organ.</p></div>
-            </div>
-            <div class="zone">
-              <div class="zone-num gd">②</div>
-              <div class="zone-text"><h4>Zona Pemanjangan</h4><p>Sel membesar dan memanjang secara dramatis, mendorong ujung organ ke depan.</p></div>
-            </div>
-            <div class="zone">
-              <div class="zone-num br">③</div>
-              <div class="zone-text"><h4>Zona Diferensiasi</h4><p>Sel berubah menjadi jaringan khusus: epidermis, korteks, jaringan pengangkut.</p></div>
-            </div>
+            <div class="zone"><div class="zone-num gn">①</div><div class="zone-text"><h4>Zona Pembelahan</h4><p>Sel-sel aktif bermitosis menghasilkan sel-sel baru untuk menambah panjang organ.</p></div></div>
+            <div class="zone"><div class="zone-num gd">②</div><div class="zone-text"><h4>Zona Pemanjangan</h4><p>Sel membesar dan memanjang secara dramatis, mendorong ujung organ ke depan.</p></div></div>
+            <div class="zone"><div class="zone-num br">③</div><div class="zone-text"><h4>Zona Diferensiasi</h4><p>Sel berubah menjadi jaringan khusus: epidermis, korteks, jaringan pengangkut.</p></div></div>
           </div>
         </div>
       </div>
@@ -740,31 +703,22 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
         <div class="slide-inner">
           <span class="slide-badge">✦ Bab 1 Lanjutan</span>
           <div class="slide-title">Jenis-Jenis <em>Meristem</em></div>
-
-          <!-- Illustration: plant with labeled zones -->
           <div class="illus-wrap" style="height:180px; background:rgba(0,0,0,.2); border-radius:18px;">
             <svg viewBox="0 0 500 180" xmlns="http://www.w3.org/2000/svg">
-              <!-- Stem vertical -->
               <rect x="237" y="10" width="26" height="140" rx="4" fill="rgba(45,106,79,.35)" stroke="#40916c" stroke-width="1.5"/>
-              <!-- Apical at top -->
               <ellipse cx="250" cy="12" rx="20" ry="10" fill="rgba(116,198,157,.5)" stroke="#74c69d" stroke-width="2"/>
               <text x="250" y="16" fill="#0a2e1a" font-size="9" font-family="Nunito,sans-serif" font-weight="900" text-anchor="middle">APIKAL</text>
-              <!-- Internodes (interkalar) -->
               <rect x="232" y="50" width="36" height="14" rx="3" fill="rgba(244,185,66,.45)" stroke="#f4b942" stroke-width="1.5"/>
               <text x="250" y="61" fill="#f4b942" font-size="8" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">INTERKALAR</text>
               <rect x="232" y="90" width="36" height="14" rx="3" fill="rgba(244,185,66,.45)" stroke="#f4b942" stroke-width="1.5"/>
-              <!-- Lateral / kambium ring -->
               <ellipse cx="250" cy="120" rx="30" ry="6" fill="none" stroke="#e63946" stroke-width="2" stroke-dasharray="4,3"/>
               <text x="250" y="124" fill="#ff8fab" font-size="8" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">LATERAL</text>
-              <!-- Root -->
               <rect x="237" y="150" width="26" height="25" rx="4" fill="rgba(45,106,79,.3)" stroke="#40916c" stroke-width="1"/>
               <ellipse cx="250" cy="174" rx="20" ry="8" fill="rgba(116,198,157,.4)" stroke="#74c69d" stroke-width="1.5"/>
               <text x="250" y="178" fill="#0a2e1a" font-size="8" font-family="Nunito,sans-serif" font-weight="900" text-anchor="middle">APIKAL</text>
-              <!-- Leaves -->
               <ellipse cx="210" cy="40" rx="28" ry="12" fill="#2d6a4f" opacity=".5" transform="rotate(-30,210,40)"/>
               <ellipse cx="290" cy="70" rx="28" ry="12" fill="#2d6a4f" opacity=".5" transform="rotate(30,290,70)"/>
               <ellipse cx="205" cy="80" rx="24" ry="10" fill="#2d6a4f" opacity=".4" transform="rotate(-25,205,80)"/>
-              <!-- Labels right side -->
               <text x="320" y="18" fill="#74c69d" font-size="11" font-family="Nunito,sans-serif" font-weight="800">Meristem Apikal</text>
               <text x="320" y="30" fill="rgba(255,255,255,.4)" font-size="9" font-family="Nunito,sans-serif">Pertumbuhan primer ↕</text>
               <text x="320" y="62" fill="#f4b942" font-size="11" font-family="Nunito,sans-serif" font-weight="800">Meristem Interkalar</text>
@@ -773,12 +727,9 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
               <text x="320" y="132" fill="rgba(255,255,255,.4)" font-size="9" font-family="Nunito,sans-serif">Kambium → membesar</text>
             </svg>
           </div>
-
           <div class="tbl-wrap">
             <table>
-              <thead>
-                <tr><th>Jenis</th><th>Lokasi</th><th>Fungsi</th><th>Tipe</th></tr>
-              </thead>
+              <thead><tr><th>Jenis</th><th>Lokasi</th><th>Fungsi</th><th>Tipe</th></tr></thead>
               <tbody>
                 <tr><td>Meristem Apikal</td><td>Ujung batang & akar</td><td>Pertumbuhan memanjang</td><td>Primer</td></tr>
                 <tr><td>Meristem Lateral (Kambium)</td><td>Antara xilem & floem</td><td>Pertumbuhan melebar</td><td>Sekunder</td></tr>
@@ -786,7 +737,6 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
               </tbody>
             </table>
           </div>
-
           <div class="highlight">
             <div class="highlight-icon">⚡</div>
             <div class="highlight-text"><strong>Ingat!</strong> Meristem Lateral (Kambium) hanya dimiliki oleh tumbuhan <strong>Dikotil</strong>. Tumbuhan Monokotil <strong>tidak memiliki kambium</strong>, sehingga batangnya tidak bisa membesar.</div>
@@ -801,48 +751,29 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
         <div class="slide-inner">
           <span class="slide-badge">✦ Bab 2</span>
           <div class="slide-title"><em>Xilem</em> — Pembuluh Kayu</div>
-
-          <!-- Xilem illustration -->
           <div class="illus-wrap" style="height:170px; background:rgba(0,0,0,.25); border-radius:18px;">
             <svg viewBox="0 0 500 170" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="xgrd" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#1b4332"/>
-                  <stop offset="100%" stop-color="#0a2e1a"/>
-                </linearGradient>
-              </defs>
-              <!-- Vessel/tracheid tubes -->
-              <!-- Trakea (wide) -->
               <rect x="100" y="20" width="40" height="130" rx="5" fill="rgba(67,97,238,.2)" stroke="#4361ee" stroke-width="2"/>
               <rect x="108" y="20" width="24" height="130" rx="3" fill="rgba(67,97,238,.15)"/>
-              <!-- open ends -->
               <rect x="100" y="18" width="40" height="6" rx="2" fill="#4361ee" opacity=".5"/>
               <rect x="100" y="146" width="40" height="6" rx="2" fill="#4361ee" opacity=".5"/>
-              <!-- water droplets flowing in trakea -->
               <circle cx="120" cy="50" r="5" fill="#74c69d" opacity=".7"/>
               <circle cx="120" cy="75" r="5" fill="#74c69d" opacity=".65"/>
               <circle cx="120" cy="100" r="5" fill="#74c69d" opacity=".6"/>
               <circle cx="120" cy="125" r="5" fill="#74c69d" opacity=".55"/>
-              <!-- arrows -->
               <text x="120" y="40" fill="#74c69d" font-size="12" text-anchor="middle" opacity=".7">↑</text>
-              <!-- Trakeid (narrow) -->
               <rect x="165" y="30" width="28" height="110" rx="8" fill="rgba(67,97,238,.15)" stroke="#4361ee" stroke-width="1.5" stroke-dasharray="3,2"/>
-              <!-- pits -->
               <circle cx="179" cy="55" r="4" fill="none" stroke="#4361ee" stroke-width="1.5" opacity=".7"/>
               <circle cx="179" cy="80" r="4" fill="none" stroke="#4361ee" stroke-width="1.5" opacity=".7"/>
               <circle cx="179" cy="105" r="4" fill="none" stroke="#4361ee" stroke-width="1.5" opacity=".7"/>
-              <!-- Parenkim Xilem -->
               <rect x="210" y="35" width="30" height="30" rx="6" fill="rgba(116,198,157,.25)" stroke="#74c69d" stroke-width="1.5"/>
               <rect x="210" y="75" width="30" height="30" rx="6" fill="rgba(116,198,157,.25)" stroke="#74c69d" stroke-width="1.5"/>
               <rect x="210" y="115" width="30" height="30" rx="6" fill="rgba(116,198,157,.25)" stroke="#74c69d" stroke-width="1.5"/>
-              <!-- Serat Xilem -->
               <rect x="255" y="25" width="18" height="120" rx="3" fill="rgba(127,85,57,.3)" stroke="#b08968" stroke-width="1.5"/>
-              <!-- Labels -->
               <text x="120" y="165" fill="#a8c8ff" font-size="9.5" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">① Trakea</text>
               <text x="179" y="155" fill="#a8c8ff" font-size="9.5" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">② Trakeid</text>
               <text x="225" y="165" fill="#74c69d" font-size="9.5" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">③ Parenkim</text>
               <text x="264" y="155" fill="#d4a373" font-size="9.5" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">④ Serat</text>
-              <!-- Flow diagram right side -->
               <text x="340" y="35" fill="#74c69d" font-size="12" font-family="Nunito,sans-serif" font-weight="900">Aliran Xilem:</text>
               <text x="340" y="55" fill="rgba(255,255,255,.6)" font-size="11" font-family="Nunito,sans-serif">🌱 Akar</text>
               <text x="340" y="75" fill="rgba(255,255,255,.5)" font-size="18" font-family="Nunito,sans-serif">↑</text>
@@ -852,20 +783,10 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
               <text x="340" y="158" fill="#74c69d" font-size="10" font-family="Nunito,sans-serif" font-weight="700">💧 Air + Mineral</text>
             </svg>
           </div>
-
           <div class="card-row">
-            <div class="card">
-              <div class="card-icon">💧</div>
-              <div class="card-title">Fungsi Xilem</div>
-              <div class="card-text">Mengangkut <strong style="color:var(--g5)">air dan garam mineral</strong> dari akar ke daun. Aliran bersifat <strong style="color:var(--g5)">satu arah ↑</strong></div>
-            </div>
-            <div class="card brown">
-              <div class="card-icon">🪵</div>
-              <div class="card-title" style="color:#d4a373">Karakteristik</div>
-              <div class="card-text">Sebagian besar <strong style="color:#d4a373">sel mati</strong> (trakea & trakeid). Dinding mengandung <strong style="color:#d4a373">lignin</strong> yang keras.</div>
-            </div>
+            <div class="card"><div class="card-icon">💧</div><div class="card-title">Fungsi Xilem</div><div class="card-text">Mengangkut <strong style="color:var(--g5)">air dan garam mineral</strong> dari akar ke daun. Aliran bersifat <strong style="color:var(--g5)">satu arah ↑</strong></div></div>
+            <div class="card brown"><div class="card-icon">🪵</div><div class="card-title" style="color:#d4a373">Karakteristik</div><div class="card-text">Sebagian besar <strong style="color:#d4a373">sel mati</strong> (trakea & trakeid). Dinding mengandung <strong style="color:#d4a373">lignin</strong> yang keras.</div></div>
           </div>
-
           <div class="comp-list">
             <div class="comp-item"><h4>① Trakea (Vessel)</h4><p>Sel mati, tabung diameter besar, ujung <strong style="color:var(--g5)">terbuka</strong> — aliran air cepat.</p></div>
             <div class="comp-item"><h4>② Trakeid</h4><p>Sel mati, lebih sempit, ujung meruncing. Air lewat <strong style="color:var(--g5)">pori-pori (pit)</strong>.</p></div>
@@ -882,44 +803,33 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
         <div class="slide-inner">
           <span class="slide-badge">✦ Bab 3</span>
           <div class="slide-title"><em>Floem</em> — Pembuluh Tapis</div>
-
-          <!-- Floem illustration -->
           <div class="illus-wrap" style="height:170px; background:rgba(0,0,0,.25); border-radius:18px;">
             <svg viewBox="0 0 500 170" xmlns="http://www.w3.org/2000/svg">
-              <!-- Sieve tube -->
               <rect x="90" y="15" width="38" height="140" rx="5" fill="rgba(244,185,66,.15)" stroke="#f4b942" stroke-width="2"/>
-              <!-- sieve plates (horizontal dashes) -->
               <line x1="90" y1="45" x2="128" y2="45" stroke="#f4b942" stroke-width="2" stroke-dasharray="3,2"/>
               <line x1="90" y1="75" x2="128" y2="75" stroke="#f4b942" stroke-width="2" stroke-dasharray="3,2"/>
               <line x1="90" y1="105" x2="128" y2="105" stroke="#f4b942" stroke-width="2" stroke-dasharray="3,2"/>
               <line x1="90" y1="130" x2="128" y2="130" stroke="#f4b942" stroke-width="2" stroke-dasharray="3,2"/>
-              <!-- sugar molecules -->
               <circle cx="109" cy="30" r="4" fill="#f4b942" opacity=".7"/>
               <circle cx="109" cy="58" r="4" fill="#f4b942" opacity=".65"/>
               <circle cx="109" cy="90" r="4" fill="#f4b942" opacity=".6"/>
               <circle cx="109" cy="118" r="4" fill="#f4b942" opacity=".55"/>
               <circle cx="109" cy="142" r="4" fill="#f4b942" opacity=".5"/>
-              <!-- two-way arrows -->
               <text x="109" y="160" fill="#f4b942" font-size="10" text-anchor="middle" opacity=".8">↕</text>
-              <!-- Companion cell -->
               <rect x="133" y="20" width="24" height="55" rx="5" fill="rgba(116,198,157,.25)" stroke="#74c69d" stroke-width="1.5"/>
               <circle cx="145" cy="40" r="7" fill="rgba(116,198,157,.4)" stroke="#74c69d" stroke-width="1"/>
               <circle cx="145" cy="40" r="3" fill="#74c69d" opacity=".8"/>
               <rect x="133" y="80" width="24" height="55" rx="5" fill="rgba(116,198,157,.25)" stroke="#74c69d" stroke-width="1.5"/>
               <circle cx="145" cy="100" r="7" fill="rgba(116,198,157,.4)" stroke="#74c69d" stroke-width="1"/>
               <circle cx="145" cy="100" r="3" fill="#74c69d" opacity=".8"/>
-              <!-- Parenkim floem -->
               <rect x="170" y="30" width="28" height="28" rx="5" fill="rgba(244,185,66,.15)" stroke="#f4b942" stroke-width="1" stroke-dasharray="3,2"/>
               <rect x="170" y="68" width="28" height="28" rx="5" fill="rgba(244,185,66,.15)" stroke="#f4b942" stroke-width="1" stroke-dasharray="3,2"/>
               <rect x="170" y="108" width="28" height="28" rx="5" fill="rgba(244,185,66,.15)" stroke="#f4b942" stroke-width="1" stroke-dasharray="3,2"/>
-              <!-- Serat floem -->
               <rect x="210" y="22" width="16" height="118" rx="4" fill="rgba(127,85,57,.35)" stroke="#b08968" stroke-width="1.5"/>
-              <!-- Labels -->
               <text x="109" y="12" fill="#f4b942" font-size="9.5" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">① Pem. Tapis</text>
               <text x="145" y="155" fill="#74c69d" font-size="9.5" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">② Sel Peng.</text>
               <text x="184" y="155" fill="#f4b942" font-size="9.5" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">③ Parenkim</text>
               <text x="218" y="155" fill="#d4a373" font-size="9.5" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">④ Serat</text>
-              <!-- Right side -->
               <text x="300" y="30" fill="#f4b942" font-size="12" font-family="Nunito,sans-serif" font-weight="900">Aliran Floem:</text>
               <text x="300" y="52" fill="rgba(255,255,255,.6)" font-size="11" font-family="Nunito,sans-serif">🍃 Daun (sumber)</text>
               <text x="300" y="72" fill="rgba(255,255,255,.5)" font-size="18" font-family="Nunito,sans-serif">↕</text>
@@ -929,20 +839,10 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
               <text x="300" y="160" fill="#f4b942" font-size="10" font-family="Nunito,sans-serif" font-weight="700">🍬 Gula + Nutrisi</text>
             </svg>
           </div>
-
           <div class="card-row">
-            <div class="card gold">
-              <div class="card-icon">🍬</div>
-              <div class="card-title">Fungsi Floem</div>
-              <div class="card-text">Mengedarkan <strong style="color:var(--gold2)">hasil fotosintesis</strong> (gula/sukrosa) dari daun ke seluruh tubuh. Aliran <strong style="color:var(--gold2)">dua arah ↕</strong></div>
-            </div>
-            <div class="card">
-              <div class="card-icon">🫧</div>
-              <div class="card-title">Karakteristik</div>
-              <div class="card-text">Sel-sel <strong style="color:var(--g5)">hidup</strong> yang kehilangan inti saat dewasa. Punya <strong style="color:var(--g5)">lempeng tapis</strong> (lubang-lubang kecil).</div>
-            </div>
+            <div class="card gold"><div class="card-icon">🍬</div><div class="card-title">Fungsi Floem</div><div class="card-text">Mengedarkan <strong style="color:var(--gold2)">hasil fotosintesis</strong> (gula/sukrosa) dari daun ke seluruh tubuh. Aliran <strong style="color:var(--gold2)">dua arah ↕</strong></div></div>
+            <div class="card"><div class="card-icon">🫧</div><div class="card-title">Karakteristik</div><div class="card-text">Sel-sel <strong style="color:var(--g5)">hidup</strong> yang kehilangan inti saat dewasa. Punya <strong style="color:var(--g5)">lempeng tapis</strong> (lubang-lubang kecil).</div></div>
           </div>
-
           <div class="comp-list">
             <div class="comp-item gold"><h4>① Pembuluh Tapis (Sieve Tube)</h4><p>Sel hidup, kehilangan inti. Ujung berlubang (lempeng tapis) sebagai jalur nutrisi.</p></div>
             <div class="comp-item gold"><h4>② Sel Pengiring (Companion Cell)</h4><p>Kaya organel & inti sel. Menyuplai energi dan mengontrol pembuluh tapis.</p></div>
@@ -959,21 +859,16 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
         <div class="slide-inner">
           <span class="slide-badge">✦ Perbandingan</span>
           <div class="slide-title">Xilem <em>vs</em> Floem</div>
-
-          <!-- VS illustration -->
           <div class="illus-wrap" style="height:160px; background:rgba(0,0,0,.2); border-radius:18px;">
             <svg viewBox="0 0 500 160" xmlns="http://www.w3.org/2000/svg">
-              <!-- Xilem side -->
               <rect x="20" y="20" width="180" height="120" rx="14" fill="rgba(67,97,238,.1)" stroke="#4361ee" stroke-width="2"/>
               <text x="110" y="45" fill="#a8c8ff" font-size="14" font-family="Playfair Display,serif" font-weight="700" text-anchor="middle">💧 XILEM</text>
               <text x="110" y="65" fill="rgba(255,255,255,.6)" font-size="10" font-family="Nunito,sans-serif" text-anchor="middle">Air + Mineral</text>
               <text x="110" y="82" fill="#74c69d" font-size="20" text-anchor="middle">↑</text>
               <text x="110" y="99" fill="rgba(255,255,255,.5)" font-size="10" font-family="Nunito,sans-serif" text-anchor="middle">Satu arah</text>
               <text x="110" y="118" fill="rgba(255,255,255,.45)" font-size="10" font-family="Nunito,sans-serif" text-anchor="middle">Sel mati · Lignin</text>
-              <!-- VS badge -->
               <circle cx="250" cy="80" r="22" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/>
               <text x="250" y="87" fill="rgba(255,255,255,.7)" font-size="16" font-family="Playfair Display,serif" font-weight="900" text-anchor="middle">VS</text>
-              <!-- Floem side -->
               <rect x="300" y="20" width="180" height="120" rx="14" fill="rgba(244,185,66,.08)" stroke="#f4b942" stroke-width="2"/>
               <text x="390" y="45" fill="#f4b942" font-size="14" font-family="Playfair Display,serif" font-weight="700" text-anchor="middle">🍬 FLOEM</text>
               <text x="390" y="65" fill="rgba(255,255,255,.6)" font-size="10" font-family="Nunito,sans-serif" text-anchor="middle">Hasil Fotosintesis</text>
@@ -982,7 +877,6 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
               <text x="390" y="118" fill="rgba(255,255,255,.45)" font-size="10" font-family="Nunito,sans-serif" text-anchor="middle">Sel hidup · Selulosa</text>
             </svg>
           </div>
-
           <div class="tbl-wrap">
             <table>
               <thead><tr><th>Aspek</th><th>💧 Xilem</th><th>🍬 Floem</th></tr></thead>
@@ -995,9 +889,8 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
               </tbody>
             </table>
           </div>
-
           <div class="highlight">
-            <div class="highlight-text">🧠 <strong>Trik Ingat:</strong> Xi<strong style="color:var(--g5)">lem</strong> = air naik ke atas (satu arah, seperti hujan tidak pernah turun kembali ke awan). F<strong style="color:var(--gold2)">loem</strong> = makanan dibagi ke seluruh tubuh (bisa ke mana saja).</div>
+            <div class="highlight-text">🧠 <strong>Trik Ingat:</strong> Xi<strong style="color:var(--g5)">lem</strong> = air naik ke atas (satu arah). F<strong style="color:var(--gold2)">loem</strong> = makanan dibagi ke seluruh tubuh (bisa ke mana saja).</div>
           </div>
         </div>
       </div>
@@ -1010,23 +903,16 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
           <span class="slide-badge">✦ Bab 4</span>
           <div class="slide-title"><em>Dikotil</em> vs <em>Monokotil</em></div>
           <div class="slide-subtitle">Tumbuhan berbiji (Angiospermae) dibagi berdasarkan jumlah <strong style="color:var(--gold2)">kotiledon (keping biji)</strong>.</div>
-
-          <!-- Illustration: seed comparison -->
           <div class="illus-wrap" style="height:185px; background:rgba(0,0,0,.2); border-radius:18px;">
             <svg viewBox="0 0 500 185" xmlns="http://www.w3.org/2000/svg">
-              <!-- Dikotil seed (bean shape) split in two -->
               <g transform="translate(100,92)">
-                <!-- left half -->
                 <path d="M0,0 Q-10,-45 -25,-50 Q-55,-52 -58,-25 Q-60,0 -45,30 Q-30,55 0,55 Z" fill="rgba(45,106,79,.5)" stroke="#40916c" stroke-width="2"/>
-                <!-- right half -->
                 <path d="M0,0 Q10,-45 25,-50 Q55,-52 58,-25 Q60,0 45,30 Q30,55 0,55 Z" fill="rgba(45,106,79,.4)" stroke="#40916c" stroke-width="2"/>
-                <!-- embryo line -->
                 <line x1="0" y1="-45" x2="0" y2="45" stroke="#74c69d" stroke-width="1.5" stroke-dasharray="3,2"/>
                 <text x="0" y="-58" fill="#74c69d" font-size="11" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">DIKOTIL</text>
                 <text x="0" y="70" fill="rgba(255,255,255,.55)" font-size="9.5" font-family="Nunito,sans-serif" text-anchor="middle">2 keping biji</text>
                 <text x="0" y="82" fill="rgba(255,255,255,.4)" font-size="9" font-family="Nunito,sans-serif" text-anchor="middle">Kacang, Mangga</text>
               </g>
-              <!-- Monokotil seed (corn) -->
               <g transform="translate(360,92)">
                 <ellipse cx="0" cy="0" rx="42" ry="58" fill="rgba(244,185,66,.25)" stroke="#f4b942" stroke-width="2"/>
                 <ellipse cx="10" cy="-10" rx="18" ry="25" fill="rgba(244,185,66,.15)" stroke="#f4b942" stroke-width="1" stroke-dasharray="3,2"/>
@@ -1034,11 +920,9 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
                 <text x="0" y="72" fill="rgba(255,255,255,.55)" font-size="9.5" font-family="Nunito,sans-serif" text-anchor="middle">1 keping biji</text>
                 <text x="0" y="84" fill="rgba(255,255,255,.4)" font-size="9" font-family="Nunito,sans-serif" text-anchor="middle">Jagung, Padi</text>
               </g>
-              <!-- VS -->
               <text x="250" y="98" fill="rgba(255,255,255,.35)" font-size="22" font-family="Playfair Display,serif" font-weight="700" text-anchor="middle">⟺</text>
             </svg>
           </div>
-
           <div class="split">
             <div class="split-a">
               <h4>🌳 Dikotil (Dua Keping)</h4>
@@ -1067,29 +951,22 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
       </div>
 
       <!-- ============================================================
-           SLIDE 8 — ORGAN COMPARISON (Akar, Batang, Daun)
+           SLIDE 8 — ORGAN COMPARISON
            ============================================================ -->
       <div class="slide slide-gold-bg" data-title="Perbedaan Organ">
         <div class="slide-inner">
           <span class="slide-badge">✦ Bab 4 Detail</span>
           <div class="slide-title">Perbedaan <em>Per Organ</em></div>
-
-          <!-- Organ illustrations -->
           <div class="illus-wrap" style="height:190px; background:rgba(0,0,0,.2); border-radius:18px;">
             <svg viewBox="0 0 500 190" xmlns="http://www.w3.org/2000/svg">
-              <!-- ROOTS comparison -->
-              <!-- Dikotil taproot -->
               <g transform="translate(80,20)">
                 <text x="0" y="12" fill="#74c69d" font-size="10" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">🌳 Akar Tunggang</text>
-                <!-- main root -->
                 <line x1="0" y1="18" x2="0" y2="90" stroke="#40916c" stroke-width="5" stroke-linecap="round"/>
-                <!-- lateral roots -->
                 <line x1="0" y1="35" x2="-22" y2="55" stroke="#40916c" stroke-width="2"/>
                 <line x1="0" y1="50" x2="20" y2="70" stroke="#40916c" stroke-width="2"/>
                 <line x1="0" y1="65" x2="-18" y2="85" stroke="#40916c" stroke-width="1.5"/>
                 <line x1="0" y1="75" x2="15" y2="92" stroke="#40916c" stroke-width="1.5"/>
               </g>
-              <!-- Monokotil fibrous -->
               <g transform="translate(200,20)">
                 <text x="0" y="12" fill="#f4b942" font-size="10" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">🌾 Akar Serabut</text>
                 <line x1="-20" y1="18" x2="-25" y2="90" stroke="#b08968" stroke-width="2"/>
@@ -1098,12 +975,9 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
                 <line x1="10" y1="18" x2="14" y2="88" stroke="#b08968" stroke-width="2"/>
                 <line x1="20" y1="18" x2="26" y2="90" stroke="#b08968" stroke-width="2"/>
               </g>
-              <!-- STEM CROSS-SECTIONS -->
-              <!-- Dikotil: circular bundles -->
               <g transform="translate(330,20)">
                 <text x="0" y="12" fill="#74c69d" font-size="10" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">Batang Dikotil</text>
                 <circle cx="0" cy="60" r="50" fill="rgba(45,106,79,.2)" stroke="#40916c" stroke-width="2"/>
-                <!-- bundles in ring -->
                 <circle cx="0" cy="18" r="6" fill="#4361ee" opacity=".7"/>
                 <circle cx="35" cy="43" r="6" fill="#4361ee" opacity=".7"/>
                 <circle cx="35" cy="77" r="6" fill="#4361ee" opacity=".7"/>
@@ -1111,11 +985,9 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
                 <circle cx="-35" cy="77" r="6" fill="#4361ee" opacity=".7"/>
                 <circle cx="-35" cy="43" r="6" fill="#4361ee" opacity=".7"/>
               </g>
-              <!-- Monokotil: scattered bundles -->
               <g transform="translate(450,20)">
                 <text x="0" y="12" fill="#f4b942" font-size="10" font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle">Batang Monokotil</text>
                 <circle cx="0" cy="60" r="50" fill="rgba(127,85,57,.15)" stroke="#b08968" stroke-width="2"/>
-                <!-- random dots -->
                 <circle cx="12" cy="28" r="5" fill="#f4b942" opacity=".7"/>
                 <circle cx="-20" cy="38" r="4" fill="#f4b942" opacity=".65"/>
                 <circle cx="30" cy="52" r="5" fill="#f4b942" opacity=".7"/>
@@ -1126,35 +998,17 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
                 <circle cx="-18" cy="92" r="4" fill="#f4b942" opacity=".6"/>
                 <circle cx="35" cy="84" r="4" fill="#f4b942" opacity=".65"/>
               </g>
-              <!-- bottom labels -->
               <text x="80" y="180" fill="rgba(255,255,255,.4)" font-size="9" font-family="Nunito,sans-serif" text-anchor="middle">Ada akar utama</text>
               <text x="200" y="180" fill="rgba(255,255,255,.4)" font-size="9" font-family="Nunito,sans-serif" text-anchor="middle">Seragam semua</text>
               <text x="330" y="180" fill="rgba(255,255,255,.4)" font-size="9" font-family="Nunito,sans-serif" text-anchor="middle">Berkas melingkar</text>
               <text x="450" y="180" fill="rgba(255,255,255,.4)" font-size="9" font-family="Nunito,sans-serif" text-anchor="middle">Berkas tersebar</text>
             </svg>
           </div>
-
-          <!-- LEAF patterns -->
           <div style="margin-bottom:6px;font-family:'Playfair Display',serif;font-size:.95rem;color:var(--g5);">🍃 Pertulangan Daun</div>
           <div class="split">
-            <div class="split-a">
-              <h4>🌳 Dikotil</h4>
-              <ul>
-                <li>Menyirip 🐟 — seperti tulang ikan</li>
-                <li>Menjari ✋ — seperti jari tangan</li>
-                <li>Contoh: daun mangga, singkong</li>
-              </ul>
-            </div>
-            <div class="split-b">
-              <h4>🌾 Monokotil</h4>
-              <ul>
-                <li>Sejajar ≡ — garis lurus sejajar</li>
-                <li>Melengkung ⌒ — garis melengkung</li>
-                <li>Contoh: daun rumput, pisang</li>
-              </ul>
-            </div>
+            <div class="split-a"><h4>🌳 Dikotil</h4><ul><li>Menyirip 🐟 — seperti tulang ikan</li><li>Menjari ✋ — seperti jari tangan</li><li>Contoh: daun mangga, singkong</li></ul></div>
+            <div class="split-b"><h4>🌾 Monokotil</h4><ul><li>Sejajar ≡ — garis lurus sejajar</li><li>Melengkung ⌒ — garis melengkung</li><li>Contoh: daun rumput, pisang</li></ul></div>
           </div>
-
           <div style="margin-bottom:6px;font-family:'Playfair Display',serif;font-size:.95rem;color:var(--gold2);">🌸 Bunga</div>
           <div class="split">
             <div class="split-a"><h4>🌳 Dikotil</h4><ul><li>Kelipatan 2, 4, atau <strong>5</strong></li><li>Contoh: mawar (5 mahkota)</li></ul></div>
@@ -1170,7 +1024,6 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
         <div class="slide-inner">
           <span class="slide-badge">✦ Bab 4 Ringkas</span>
           <div class="slide-title">Tabel <em>Perbandingan</em> Lengkap</div>
-
           <div class="tbl-wrap">
             <table>
               <thead><tr><th>Ciri</th><th>🌳 Dikotil</th><th>🌾 Monokotil</th></tr></thead>
@@ -1184,15 +1037,11 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
               </tbody>
             </table>
           </div>
-
           <div class="highlight">
-            <div class="highlight-text">🧠 <strong>Trik Ingat Dikotil:</strong><br/>
-            Di<strong style="color:var(--gold2)">KOTIl</strong> = <strong style="color:var(--gold2)">2</strong> keping, akar <strong style="color:var(--gold2)">TUNGGANG</strong>, batang ber<strong style="color:var(--gold2)">KAMBIUM</strong>, berkas <strong style="color:var(--gold2)">MELINGKAR</strong>, tulang daun <strong style="color:var(--gold2)">MEN-YIRIP/JA-RI</strong>, bunga <strong style="color:var(--gold2)">2/4/5</strong>.</div>
+            <div class="highlight-text">🧠 <strong>Trik Ingat Dikotil:</strong><br/>Di<strong style="color:var(--gold2)">KOTIl</strong> = <strong style="color:var(--gold2)">2</strong> keping, akar <strong style="color:var(--gold2)">TUNGGANG</strong>, batang ber<strong style="color:var(--gold2)">KAMBIUM</strong>, berkas <strong style="color:var(--gold2)">MELINGKAR</strong>, tulang daun <strong style="color:var(--gold2)">MEN-YIRIP/JA-RI</strong>, bunga <strong style="color:var(--gold2)">2/4/5</strong>.</div>
           </div>
-
           <div class="highlight" style="border-color:rgba(116,198,157,.3);background:linear-gradient(135deg,rgba(116,198,157,.08),rgba(45,106,79,.08));">
-            <div class="highlight-text">🧠 <strong>Trik Ingat Monokotil:</strong><br/>
-            <strong style="color:var(--g5)">MONO</strong> = <strong style="color:var(--g5)">1</strong> keping, akar <strong style="color:var(--g5)">SERABUT</strong>, batang <strong style="color:var(--g5)">TANPA kambium</strong>, berkas <strong style="color:var(--g5)">TERSEBAR</strong>, tulang daun <strong style="color:var(--g5)">SEJAJAR</strong>, bunga kelipatan <strong style="color:var(--g5)">3</strong>.</div>
+            <div class="highlight-text">🧠 <strong>Trik Ingat Monokotil:</strong><br/><strong style="color:var(--g5)">MONO</strong> = <strong style="color:var(--g5)">1</strong> keping, akar <strong style="color:var(--g5)">SERABUT</strong>, batang <strong style="color:var(--g5)">TANPA kambium</strong>, berkas <strong style="color:var(--g5)">TERSEBAR</strong>, tulang daun <strong style="color:var(--g5)">SEJAJAR</strong>, bunga kelipatan <strong style="color:var(--g5)">3</strong>.</div>
           </div>
         </div>
       </div>
@@ -1205,7 +1054,6 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
           <span class="slide-badge">✦ Penutup</span>
           <div class="slide-title">Ringkasan <em>Materi</em></div>
           <div class="slide-subtitle">Poin-poin kunci yang perlu diingat 🌿</div>
-
           <div class="ring-list">
             <div class="ring-item"><div class="ring-num">01</div><div class="ring-text">Jaringan tumbuhan: <strong>meristem</strong> (aktif membelah) dan <strong>jaringan dewasa</strong> (sudah berdiferensiasi).</div></div>
             <div class="ring-item"><div class="ring-num">02</div><div class="ring-text">Meristem apikal ujung <strong>batang</strong> → dilindungi primordia daun. Ujung <strong>akar</strong> → dilindungi kaliptra (tudung akar).</div></div>
@@ -1215,7 +1063,6 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
             <div class="ring-item"><div class="ring-num">06</div><div class="ring-text"><strong>Monokotil</strong> = 1 kotiledon, akar serabut, tanpa kambium, berkas tersebar, daun sejajar/melengkung, bunga ×3.</div></div>
             <div class="ring-item"><div class="ring-num">07</div><div class="ring-text">Kambium hanya dimiliki dikotil → pertumbuhan sekunder (batang membesar). Monokotil tidak punya.</div></div>
           </div>
-
           <div style="text-align:center;margin-top:8px;padding:18px;background:rgba(116,198,157,.1);border-radius:16px;border:1px solid rgba(116,198,157,.2);">
             <div style="font-size:2.5rem;margin-bottom:8px;">🎮</div>
             <div style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--g5);margin-bottom:6px;">Slide berikutnya: Game Pembelajaran!</div>
@@ -1231,13 +1078,10 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
         <div class="slide-inner">
           <span class="slide-badge">✦ Evaluasi</span>
           <div class="slide-title">🎮 <em>Game</em> Pembelajaran</div>
-
-          <!-- Mode selector -->
           <div class="mode-tabs">
             <button class="mode-tab active" onclick="switchMode('quiz')" id="tab-quiz">📝 Kuis</button>
             <button class="mode-tab" onclick="switchMode('match')" id="tab-match">🔗 Cocokkan</button>
           </div>
-
           <!-- QUIZ MODE -->
           <div id="mode-quiz">
             <div class="game-wrap">
@@ -1263,7 +1107,6 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
               </div>
             </div>
           </div>
-
           <!-- MATCH MODE -->
           <div id="mode-match" style="display:none;">
             <div class="game-wrap">
@@ -1285,7 +1128,6 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
               <button class="game-btn" id="match-reset-btn" onclick="restartMatch()" style="margin-top:12px;background:rgba(255,255,255,.1);color:var(--white);box-shadow:none;">🔀 Acak</button>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -1311,9 +1153,6 @@ tbody td:first-child{font-weight:800; color:var(--g5); text-align:left;}
 </div>
 
 <script>
-/* ============================================================
-   SLIDES DATA
-   ============================================================ */
 const SLIDE_TITLES = [
   {icon:'🏠', label:'Halaman Judul'},
   {icon:'🌱', label:'Apa itu Jaringan?'},
@@ -1332,9 +1171,6 @@ const SLIDE_TITLES = [
 const TOTAL = 12;
 let curSlide = 0;
 
-/* ============================================================
-   NAVIGATION
-   ============================================================ */
 function goSlide(n) {
   if (n < 0 || n >= TOTAL) return;
   curSlide = n;
@@ -1342,7 +1178,6 @@ function goSlide(n) {
   updateNav();
   updateMenu();
   document.getElementById('topbar-title').textContent = '🌿 ' + SLIDE_TITLES[curSlide].label;
-  // scroll slide back to top
   document.querySelectorAll('.slide')[curSlide].scrollTop = 0;
 }
 
@@ -1351,8 +1186,6 @@ function updateNav() {
   document.getElementById('prev-btn').disabled = curSlide === 0;
   document.getElementById('next-btn-nav').disabled = curSlide === TOTAL-1;
   document.getElementById('next-btn-nav').textContent = curSlide === TOTAL-1 ? '✓ Selesai' : 'Lanjut →';
-
-  // dots
   const dots = document.querySelectorAll('.dot');
   dots.forEach((d,i) => {
     d.classList.toggle('active', i === curSlide);
@@ -1366,7 +1199,6 @@ function updateMenu() {
   });
 }
 
-/* Build dots */
 function buildDots() {
   const c = document.getElementById('dots');
   for(let i=0;i<TOTAL;i++){
@@ -1378,7 +1210,6 @@ function buildDots() {
   }
 }
 
-/* Build menu */
 function buildMenu() {
   const ml = document.getElementById('menu-list');
   SLIDE_TITLES.forEach((s,i)=>{
@@ -1396,9 +1227,6 @@ function toggleMenu() {
   updateMenu();
 }
 
-/* ============================================================
-   TOUCH / SWIPE
-   ============================================================ */
 let touchX=null, touchY=null;
 const track = document.getElementById('slides-track');
 track.addEventListener('touchstart', e=>{
@@ -1416,15 +1244,11 @@ track.addEventListener('touchend', e=>{
   touchX=null; touchY=null;
 },{passive:true});
 
-/* Keyboard */
 document.addEventListener('keydown', e=>{
   if(e.key==='ArrowRight'||e.key==='ArrowDown') goSlide(curSlide+1);
   if(e.key==='ArrowLeft'||e.key==='ArrowUp') goSlide(curSlide-1);
 });
 
-/* ============================================================
-   QUIZ GAME
-   ============================================================ */
 const questions = [
   { q:"Jaringan yang sel-selnya aktif membelah untuk pertumbuhan tumbuhan disebut...", opts:["Jaringan Dewasa","Jaringan Meristem","Jaringan Epidermis","Jaringan Sklerenkim"], ans:1, exp:"Meristem = jaringan muda yang aktif bermitosis untuk pertumbuhan! ✅" },
   { q:"Tudung akar (kaliptra) berfungsi untuk...", opts:["Menyerap air dari tanah","Tempat fotosintesis","Melindungi meristem apikal ujung akar","Mengangkut mineral ke daun"], ans:2, exp:"Kaliptra melindungi sel meristem dari kerusakan mekanis saat menembus tanah. ✅" },
@@ -1437,7 +1261,7 @@ const questions = [
   { q:"Sel mati berdinding tebal yang memberikan kekuatan pada Xilem adalah...", opts:["Parenkim Xilem","Sel Pengiring","Serat Xilem","Pembuluh Tapis"], ans:2, exp:"Serat Xilem: sel mati, dinding tebal (lignin) → kekuatan mekanis. ✅" },
   { q:"Sistem akar serabut merupakan ciri khas tumbuhan...", opts:["Dikotil","Gymnospermae","Monokotil","Pteridophyta"], ans:2, exp:"Monokotil (padi, jagung) memiliki sistem akar serabut. ✅" },
   { q:"Bagian bunga Monokotil berjumlah...", opts:["Kelipatan 2","Kelipatan 4","Kelipatan 5","Kelipatan 3"], ans:3, exp:"Ciri khas Monokotil: bagian bunga kelipatan 3. ✅" },
-  { q:"Meristem Lateral (Kambium) menghasilkan pertumbuhan...", opts:["Primer: memanjang","Sekunder: membesar","Primer: melebar","Tidak ada pertumbuhan"], ans:1, exp:"Kambium = meristem lateral → pertumbuhan sekunder → batang membesar. ✅" },
+  { q:"Meristem Lateral (Kambium) menghasilkan pertumbuhan...", opts:["Primer: memanjang","Sekunder: membesar","Primer: melebar","Tidak ada pertumbuhan"], ans:1, exp:"Kambium = meristem lateral → pertumbuhan sekunder → batang membesar. ✅" }
 ];
 let curQ=0, score=0, correct=0, wrong=0;
 let shuffled=[...questions];
@@ -1491,9 +1315,6 @@ function restartQuiz(){
 }
 loadQ();
 
-/* ============================================================
-   MATCHING GAME
-   ============================================================ */
 const matchPairs=[
   {term:'Xilem',def:'Pengangkut air & mineral dari akar ke daun'},
   {term:'Floem',def:'Pengedar hasil fotosintesis ke seluruh tubuh'},
@@ -1575,9 +1396,6 @@ function switchMode(m){
   if(m==='match')initMatch();
 }
 
-/* ============================================================
-   INIT
-   ============================================================ */
 buildDots();
 buildMenu();
 updateNav();
